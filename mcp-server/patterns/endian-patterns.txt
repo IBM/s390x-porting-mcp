@@ -1,0 +1,55 @@
+# Common Endian-Related Patterns
+# Format: SEVERITY|PATTERN|DESCRIPTION|LANGUAGE
+
+# Network byte order functions (already portable - no action needed)
+INFO|htons\s*\(|Using portable network byte order function (host to network short)|C,C++
+INFO|htonl\s*\(|Using portable network byte order function (host to network long)|C,C++
+INFO|ntohs\s*\(|Using portable network byte order function (network to host short)|C,C++
+INFO|ntohl\s*\(|Using portable network byte order function (network to host long)|C,C++
+
+# Host byte order conversions
+CRITICAL|htobe16\s*\(|Host to big-endian 16-bit conversion|C,C++
+CRITICAL|htobe32\s*\(|Host to big-endian 32-bit conversion|C,C++
+CRITICAL|htobe64\s*\(|Host to big-endian 64-bit conversion|C,C++
+CRITICAL|htole16\s*\(|Host to little-endian 16-bit conversion|C,C++
+CRITICAL|htole32\s*\(|Host to little-endian 32-bit conversion|C,C++
+CRITICAL|htole64\s*\(|Host to little-endian 64-bit conversion|C,C++
+CRITICAL|be16toh\s*\(|Big-endian to host 16-bit conversion|C,C++
+CRITICAL|be32toh\s*\(|Big-endian to host 32-bit conversion|C,C++
+CRITICAL|be64toh\s*\(|Big-endian to host 64-bit conversion|C,C++
+CRITICAL|le16toh\s*\(|Little-endian to host 16-bit conversion|C,C++
+CRITICAL|le32toh\s*\(|Little-endian to host 32-bit conversion|C,C++
+CRITICAL|le64toh\s*\(|Little-endian to host 64-bit conversion|C,C++
+
+# Architecture-specific preprocessor directives
+WARNING|#ifdef\s+__LITTLE_ENDIAN__|Little-endian architecture check|C,C++
+WARNING|#ifdef\s+__BIG_ENDIAN__|Big-endian architecture check|C,C++
+WARNING|#if\s+.*__BYTE_ORDER__|Byte order check|C,C++
+WARNING|#ifdef\s+_LITTLE_ENDIAN|Little-endian check (alternative)|C,C++
+WARNING|#ifdef\s+_BIG_ENDIAN|Big-endian check (alternative)|C,C++
+
+# Unsafe type casting and pointer operations
+WARNING|\*\s*\(\s*uint(8|16|32|64)_t\s*\*\s*\)|Pointer cast to fixed-size integer type|C,C++
+WARNING|\*\s*\(\s*int(8|16|32|64)_t\s*\*\s*\)|Pointer cast to fixed-size signed integer|C,C++
+WARNING|union\s+\{[^}]*\}|Union type definition - potential type punning|C,C++
+
+# Binary I/O operations
+WARNING|fread\s*\([^,]+,\s*sizeof\s*\([^)]+\)|Binary file read with sizeof|C,C++
+WARNING|fwrite\s*\([^,]+,\s*sizeof\s*\([^)]+\)|Binary file write with sizeof|C,C++
+WARNING|read\s*\([^,]+,\s*[^,]+,\s*sizeof|Binary read operation|C,C++
+WARNING|write\s*\([^,]+,\s*[^,]+,\s*sizeof|Binary write operation|C,C++
+
+# Bit manipulation that may be endian-sensitive
+INFO|<<\s*[0-9]+|Left bit shift - check if endian-sensitive|ALL
+INFO|>>\s*[0-9]+|Right bit shift - check if endian-sensitive|ALL
+INFO|&\s*0x[0-9a-fA-F]+|Bitwise AND with hex constant|ALL
+INFO|\|\s*0x[0-9a-fA-F]+|Bitwise OR with hex constant|ALL
+
+# Packed structures
+WARNING|__attribute__\s*\(\s*\(\s*packed\s*\)\s*\)|Packed structure attribute|C,C++
+WARNING|#pragma\s+pack|Pragma pack directive|C,C++
+
+# Memory copy operations that might be endian-sensitive
+INFO|memcpy\s*\(|Memory copy - verify endian-neutrality|C,C++
+INFO|memmove\s*\(|Memory move - verify endian-neutrality|C,C++
+INFO|bcopy\s*\(|Binary copy - verify endian-neutrality|C,C++

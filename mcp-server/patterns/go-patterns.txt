@@ -1,0 +1,45 @@
+# Go-Specific Endian Patterns
+# Format: SEVERITY|PATTERN|DESCRIPTION
+
+# Binary package usage
+CRITICAL|binary\.LittleEndian|Explicit little-endian byte order usage|Go
+CRITICAL|binary\.BigEndian|Explicit big-endian byte order usage|Go
+WARNING|binary\.Read\s*\(|Binary read operation - verify byte order|Go
+WARNING|binary\.Write\s*\(|Binary write operation - verify byte order|Go
+
+# Unsafe package usage
+WARNING|unsafe\.Pointer|Unsafe pointer conversion - potential endian issue|Go
+CRITICAL|\*\(\*uint(8|16|32|64)\)\(unsafe\.Pointer|Unsafe pointer cast to integer type|Go
+CRITICAL|\*\(\*int(8|16|32|64)\)\(unsafe\.Pointer|Unsafe pointer cast to signed integer|Go
+
+# Network byte order
+INFO|binary\.BigEndian\.Uint16|Reading 16-bit big-endian value|Go
+INFO|binary\.BigEndian\.Uint32|Reading 32-bit big-endian value|Go
+INFO|binary\.BigEndian\.Uint64|Reading 64-bit big-endian value|Go
+INFO|binary\.BigEndian\.PutUint16|Writing 16-bit big-endian value|Go
+INFO|binary\.BigEndian\.PutUint32|Writing 32-bit big-endian value|Go
+INFO|binary\.BigEndian\.PutUint64|Writing 64-bit big-endian value|Go
+
+# Little-endian operations
+CRITICAL|binary\.LittleEndian\.Uint16|Reading 16-bit little-endian value|Go
+CRITICAL|binary\.LittleEndian\.Uint32|Reading 32-bit little-endian value|Go
+CRITICAL|binary\.LittleEndian\.Uint64|Reading 64-bit little-endian value|Go
+CRITICAL|binary\.LittleEndian\.PutUint16|Writing 16-bit little-endian value|Go
+CRITICAL|binary\.LittleEndian\.PutUint32|Writing 32-bit little-endian value|Go
+CRITICAL|binary\.LittleEndian\.PutUint64|Writing 64-bit little-endian value|Go
+
+# Build tags for architecture
+WARNING|//\s*\+build.*amd64|Architecture-specific build tag|Go
+WARNING|//\s*\+build.*386|Architecture-specific build tag|Go
+WARNING|//\s*\+build.*s390x|s390x-specific build tag|Go
+WARNING|//go:build.*amd64|Architecture-specific build constraint|Go
+WARNING|//go:build.*386|Architecture-specific build constraint|Go
+WARNING|//go:build.*s390x|s390x-specific build constraint|Go
+
+# CGO and C interop
+WARNING|import\s+"C"|CGO usage - check C code for endian issues|Go
+WARNING|C\.[A-Za-z_][A-Za-z0-9_]*|CGO function call - verify C code|Go
+
+# Reflection and type conversion
+INFO|reflect\.ValueOf|Reflection usage - verify type conversions|Go
+INFO|reflect\.TypeOf|Type reflection - verify conversions|Go

@@ -1,0 +1,35 @@
+[project]
+name = "s390x-kb-search"
+version = "0.1.0"
+description = "Knowledge base search for s390x/IBM Z Linux build guides and porting fixes"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = [
+    "numpy",
+    "rank-bm25",
+    "sentence-transformers>=5.4",
+    "usearch",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["s390x_kb_search*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["mcp-server/tests"]

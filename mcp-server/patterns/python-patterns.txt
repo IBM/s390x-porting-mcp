@@ -1,0 +1,73 @@
+# Python-Specific Endian Patterns
+# Format: SEVERITY|PATTERN|DESCRIPTION
+
+# struct module with format specifiers
+CRITICAL|struct\.pack\s*\(\s*['"]<|struct.pack with little-endian format|Python
+WARNING|struct\.pack\s*\(\s*['"]\>|struct.pack with big-endian format|Python
+WARNING|struct\.pack\s*\(\s*['"]!|struct.pack with network (big-endian) format|Python
+INFO|struct\.pack\s*\(\s*['"]@|struct.pack with native format|Python
+INFO|struct\.pack\s*\(\s*['"]=[^'"]*[ILQHilqh]|struct.pack with standard size and alignment|Python
+CRITICAL|struct\.unpack\s*\(\s*['"]<|struct.unpack with little-endian format|Python
+WARNING|struct\.unpack\s*\(\s*['"]\>|struct.unpack with big-endian format|Python
+WARNING|struct\.unpack\s*\(\s*['"]!|struct.unpack with network (big-endian) format|Python
+INFO|struct\.unpack\s*\(\s*['"]@|struct.unpack with native format|Python
+
+# array module
+INFO|array\.array\s*\(|array.array usage - verify byte order|Python
+WARNING|\.tofile\s*\(|Array to file - verify byte order|Python
+WARNING|\.fromfile\s*\(|Array from file - verify byte order|Python
+INFO|\.tobytes\s*\(|Array to bytes - verify byte order|Python
+INFO|\.frombytes\s*\(|Array from bytes - verify byte order|Python
+
+# ctypes with C structures
+WARNING|ctypes\.Structure|ctypes Structure - verify C struct layout|Python
+WARNING|ctypes\.Union|ctypes Union - verify C union layout|Python
+INFO|ctypes\.c_uint(8|16|32|64)|ctypes unsigned integer type|Python
+INFO|ctypes\.c_int(8|16|32|64)|ctypes signed integer type|Python
+WARNING|ctypes\.POINTER|ctypes pointer - verify usage|Python
+WARNING|ctypes\.cast|ctypes cast - verify type conversion|Python
+
+# numpy with dtype byte order
+CRITICAL|dtype\s*=\s*['"]<|numpy dtype with little-endian|Python
+WARNING|dtype\s*=\s*['"]\>|numpy dtype with big-endian|Python
+INFO|dtype\s*=\s*['"][\|=]|numpy dtype with native byte order|Python
+INFO|\.astype\s*\(|numpy type conversion - verify byte order|Python
+WARNING|\.byteswap\s*\(|numpy byte swap operation|Python
+INFO|\.newbyteorder\s*\(|numpy byte order change|Python
+WARNING|\.tofile\s*\(|numpy array to file - verify byte order|Python
+WARNING|\.fromfile\s*\(|numpy array from file - verify byte order|Python
+WARNING|\.tobytes\s*\(|numpy array to bytes - verify byte order|Python
+WARNING|\.frombuffer\s*\(|numpy array from buffer - verify byte order|Python
+
+# Binary file operations
+INFO|open\s*\([^,]+,\s*['"]rb|Binary file read mode|Python
+INFO|open\s*\([^,]+,\s*['"]wb|Binary file write mode|Python
+WARNING|\.read\s*\(\s*[0-9]+\s*\)|Reading fixed number of bytes|Python
+WARNING|\.write\s*\(|Writing bytes - verify format|Python
+
+# Bit manipulation
+INFO|<<|Left shift operator - verify endian-neutrality|Python
+INFO|>>|Right shift operator - verify endian-neutrality|Python
+INFO|&\s*0x[0-9a-fA-F]+|Bitwise AND with hex constant|Python
+INFO|\|\s*0x[0-9a-fA-F]+|Bitwise OR with hex constant|Python
+
+# int methods for byte conversion
+INFO|\.to_bytes\s*\(|Integer to bytes conversion - verify byte order|Python
+INFO|\.from_bytes\s*\(|Integer from bytes conversion - verify byte order|Python
+CRITICAL|to_bytes\s*\([^,]+,\s*['"]little|to_bytes with little-endian|Python
+WARNING|to_bytes\s*\([^,]+,\s*['"]big|to_bytes with big-endian|Python
+CRITICAL|from_bytes\s*\([^,]+,\s*['"]little|from_bytes with little-endian|Python
+WARNING|from_bytes\s*\([^,]+,\s*['"]big|from_bytes with big-endian|Python
+
+# socket and network operations
+INFO|socket\.socket|Socket creation - verify network byte order|Python
+INFO|socket\.htons|Host to network short conversion|Python
+INFO|socket\.htonl|Host to network long conversion|Python
+INFO|socket\.ntohs|Network to host short conversion|Python
+INFO|socket\.ntohl|Network to host long conversion|Python
+
+# pickle and serialization
+INFO|pickle\.dump|Pickle serialization - generally endian-neutral|Python
+INFO|pickle\.load|Pickle deserialization|Python
+INFO|pickle\.dumps|Pickle to bytes|Python
+INFO|pickle\.loads|Pickle from bytes|Python

@@ -1,0 +1,63 @@
+# C/C++ Specific Endian Patterns
+# Format: SEVERITY|PATTERN|DESCRIPTION
+
+# Bit fields (order is implementation-defined)
+CRITICAL|struct\s+[^{]*\{[^}]*:\s*[0-9]+|Bit field in struct - order is implementation-defined|C,C++
+WARNING|unsigned\s+(int|char|short|long)\s+[^:]+:\s*[0-9]+|Unsigned bit field declaration|C,C++
+WARNING|signed\s+(int|char|short|long)\s+[^:]+:\s*[0-9]+|Signed bit field declaration|C,C++
+
+# Union type punning
+CRITICAL|union\s+\{[^}]*uint(8|16|32|64)_t|Union with fixed-size integer - potential type punning|C,C++
+CRITICAL|union\s+\{[^}]*int(8|16|32|64)_t|Union with signed fixed-size integer|C,C++
+WARNING|union\s+\{[^}]*(float|double)|Union with floating point - potential punning|C,C++
+
+# Direct memory access patterns
+CRITICAL|\*\(\s*uint(8|16|32|64)_t\s*\*\s*\)\s*&|Address-of with integer pointer cast|C,C++
+CRITICAL|\*\(\s*int(8|16|32|64)_t\s*\*\s*\)\s*&|Address-of with signed integer pointer cast|C,C++
+WARNING|reinterpret_cast\s*<\s*uint(8|16|32|64)_t\s*\*\s*>|C++ reinterpret_cast to integer pointer|C++
+WARNING|reinterpret_cast\s*<\s*int(8|16|32|64)_t\s*\s*>|C++ reinterpret_cast to integer|C++
+
+# Packed structures
+CRITICAL|__attribute__\s*\(\s*\(\s*packed\s*\)\s*\)\s*;|GCC packed attribute on struct|C,C++
+CRITICAL|#pragma\s+pack\s*\(\s*1\s*\)|Pragma pack(1) directive|C,C++
+CRITICAL|#pragma\s+pack\s*\(\s*push|Pragma pack push|C,C++
+WARNING|__packed|Packed keyword usage|C,C++
+
+# Endian-specific headers
+INFO|#include\s+<endian\.h>|Endian header inclusion|C,C++
+INFO|#include\s+<sys/endian\.h>|System endian header|C,C++
+INFO|#include\s+<machine/endian\.h>|Machine endian header|C,C++
+INFO|#include\s+<arpa/inet\.h>|Network byte order header|C,C++
+INFO|#include\s+<netinet/in\.h>|Internet protocol header|C,C++
+
+# Byte swapping functions
+CRITICAL|__builtin_bswap16|GCC builtin byte swap 16-bit|C,C++
+CRITICAL|__builtin_bswap32|GCC builtin byte swap 32-bit|C,C++
+CRITICAL|__builtin_bswap64|GCC builtin byte swap 64-bit|C,C++
+CRITICAL|_byteswap_ushort|MSVC byte swap unsigned short|C,C++
+CRITICAL|_byteswap_ulong|MSVC byte swap unsigned long|C,C++
+CRITICAL|_byteswap_uint64|MSVC byte swap uint64|C,C++
+CRITICAL|bswap_16|BSD byte swap 16-bit|C,C++
+CRITICAL|bswap_32|BSD byte swap 32-bit|C,C++
+CRITICAL|bswap_64|BSD byte swap 64-bit|C,C++
+
+# Architecture-specific inline assembly
+CRITICAL|__asm__|Inline assembly - check for endian assumptions|C,C++
+CRITICAL|asm\s+volatile|Volatile inline assembly|C,C++
+WARNING|__asm\s+\{|MSVC inline assembly block|C,C++
+
+# Direct struct serialization
+WARNING|fwrite\s*\(\s*&[^,]+,\s*sizeof\s*\([^)]+\)\s*,|Direct struct write to file|C,C++
+WARNING|fread\s*\(\s*&[^,]+,\s*sizeof\s*\([^)]+\)\s*,|Direct struct read from file|C,C++
+WARNING|write\s*\([^,]+,\s*&[^,]+,\s*sizeof|Direct struct write to descriptor|C,C++
+WARNING|read\s*\([^,]+,\s*&[^,]+,\s*sizeof|Direct struct read from descriptor|C,C++
+WARNING|send\s*\([^,]+,\s*&[^,]+,\s*sizeof|Direct struct send over socket|C,C++
+WARNING|recv\s*\([^,]+,\s*&[^,]+,\s*sizeof|Direct struct receive from socket|C,C++
+
+# Pointer arithmetic with size assumptions
+WARNING|\+\s*sizeof\s*\(|Pointer arithmetic with sizeof|C,C++
+WARNING|\-\s*sizeof\s*\(|Pointer subtraction with sizeof|C,C++
+
+# C++ specific patterns
+WARNING|std::bit_cast|C++20 bit_cast - verify usage|C++
+INFO|std::endian::|C++20 endian enum usage|C++

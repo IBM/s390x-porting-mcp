@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "s390x": {
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "-v", "${workspaceFolder}:/workspace",
+        "s390x-mcp:latest"
+      ]
+    }
+  }
+}

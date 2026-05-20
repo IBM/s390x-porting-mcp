@@ -1,0 +1,53 @@
+# Java-Specific Endian Patterns
+# Format: SEVERITY|PATTERN|DESCRIPTION
+
+# ByteBuffer with explicit byte order
+CRITICAL|ByteBuffer\.allocate.*\.order\s*\(\s*ByteOrder\.LITTLE_ENDIAN|ByteBuffer with little-endian order|Java
+WARNING|ByteBuffer\.allocate.*\.order\s*\(\s*ByteOrder\.BIG_ENDIAN|ByteBuffer with big-endian order|Java
+INFO|ByteBuffer\.allocate|ByteBuffer allocation - check byte order|Java
+WARNING|\.order\s*\(\s*ByteOrder\.|Explicit byte order setting|Java
+
+# DataInputStream/DataOutputStream (big-endian by default)
+INFO|DataInputStream|DataInputStream usage - big-endian by default|Java
+INFO|DataOutputStream|DataOutputStream usage - big-endian by default|Java
+INFO|\.readInt\s*\(|Reading integer - verify byte order|Java
+INFO|\.readLong\s*\(|Reading long - verify byte order|Java
+INFO|\.readShort\s*\(|Reading short - verify byte order|Java
+INFO|\.writeInt\s*\(|Writing integer - verify byte order|Java
+INFO|\.writeLong\s*\(|Writing long - verify byte order|Java
+INFO|\.writeShort\s*\(|Writing short - verify byte order|Java
+
+# ByteOrder enum usage
+INFO|ByteOrder\.LITTLE_ENDIAN|Little-endian byte order constant|Java
+INFO|ByteOrder\.BIG_ENDIAN|Big-endian byte order constant|Java
+INFO|ByteOrder\.nativeOrder|Native byte order - architecture-dependent|Java
+
+# Unsafe operations
+WARNING|sun\.misc\.Unsafe|Unsafe class usage - potential endian issues|Java
+WARNING|jdk\.internal\.misc\.Unsafe|Internal Unsafe usage|Java
+CRITICAL|\.getInt\s*\(|Unsafe getInt - verify byte order|Java
+CRITICAL|\.getLong\s*\(|Unsafe getLong - verify byte order|Java
+CRITICAL|\.putInt\s*\(|Unsafe putInt - verify byte order|Java
+CRITICAL|\.putLong\s*\(|Unsafe putLong - verify byte order|Java
+
+# JNI (Java Native Interface)
+WARNING|native\s+\w+\s+\w+\s*\(|Native method declaration - check C/C++ code|Java
+INFO|System\.loadLibrary|Loading native library - verify native code|Java
+INFO|System\.load\s*\(|Loading native library by path|Java
+
+# Serialization
+INFO|implements\s+Serializable|Serializable class - verify serialization|Java
+INFO|implements\s+Externalizable|Externalizable class - custom serialization|Java
+WARNING|ObjectOutputStream|Object serialization - verify format|Java
+WARNING|ObjectInputStream|Object deserialization - verify format|Java
+
+# Memory-mapped files
+INFO|FileChannel\.map|Memory-mapped file - verify byte order|Java
+INFO|MappedByteBuffer|Mapped byte buffer usage|Java
+
+# Bit manipulation
+INFO|<<|Left shift operator - verify endian-neutrality|Java
+INFO|>>|Right shift operator - verify endian-neutrality|Java
+INFO|>>>|Unsigned right shift - verify endian-neutrality|Java
+INFO|&\s*0x[0-9a-fA-F]+|Bitwise AND with hex constant|Java
+INFO|\|\s*0x[0-9a-fA-F]+|Bitwise OR with hex constant|Java

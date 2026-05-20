@@ -1,0 +1,56 @@
+# Endian-Neutrality Fix Recommendations
+# Format: PATTERN_ID|FIX_DESCRIPTION|CODE_BEFORE|CODE_AFTER|EXPLANATION
+
+# Network byte order functions (already portable - informational only)
+htons|Already using portable function - no action needed|uint16_t value = htons(data);|uint16_t value = htons(data); // ✓ Already portable|htons() is a standard POSIX function that automatically handles endianness. It works correctly on both little-endian (x86) and big-endian (s390x) systems. No changes needed.
+
+htonl|Already using portable function - no action needed|uint32_t value = htonl(data);|uint32_t value = htonl(data); // ✓ Already portable|htonl() is a standard POSIX function that automatically handles endianness. On big-endian systems like s390x, it's typically a no-op. No changes needed.
+
+ntohs|Already using portable function - no action needed|uint16_t value = ntohs(data);|uint16_t value = ntohs(data); // ✓ Already portable|ntohs() is a standard POSIX function that automatically handles endianness. It works correctly on both little-endian and big-endian architectures. No changes needed.
+
+ntohl|Already using portable function - no action needed|uint32_t value = ntohl(data);|uint32_t value = ntohl(data); // ✓ Already portable|ntohl() is a standard POSIX function that automatically handles endianness. It works correctly on both architectures. No changes needed.
+
+# Host byte order conversions
+htobe16|Verify usage is intentional|uint16_t be_val = htobe16(host_val);|#include <endian.h>\nuint16_t be_val = htobe16(host_val); // Explicit big-endian|This explicitly converts to big-endian. Ensure this is intentional and not assuming little-endian host.
+
+htole16|Replace with portable alternative|uint16_t le_val = htole16(host_val);|// Option 1: Use network byte order\nuint16_t net_val = htons(host_val);\n\n// Option 2: Keep if little-endian format required\n#include <endian.h>\nuint16_t le_val = htole16(host_val);|If converting for network protocols, use htons(). If little-endian format is required (e.g., file format), keep htole16() but document why.
+
+htobe32|Verify usage is intentional|uint32_t be_val = htobe32(host_val);|#include <endian.h>\nuint32_t be_val = htobe32(host_val); // Explicit big-endian|Verify this is needed. For network protocols, use htonl() instead.
+
+htole32|Replace with portable alternative|uint32_t le_val = htole32(host_val);|// Option 1: Use network byte order\nuint32_t net_val = htonl(host_val);\n\n// Option 2: Keep if little-endian required\n#include <endian.h>\nuint32_t le_val = htole32(host_val);|Prefer network byte order functions. Use htole32() only when little-endian format is explicitly required.
+
+# Bit fields
+struct.*:.*[0-9]+|Avoid bit fields or use explicit byte order|struct Flags {\n    unsigned int flag1 : 1;\n    unsigned int flag2 : 1;\n};|// Option 1: Use explicit bytes\nstruct Flags {\n    uint8_t flags;\n};\n#define FLAG1 0x01\n#define FLAG2 0x02\n\n// Option 2: Document bit field order\nstruct Flags {\n    unsigned int flag1 : 1;\n    unsigned int flag2 : 1;\n} __attribute__((packed));|Bit field order is implementation-defined. Use explicit byte masks or document the expected layout.
+
+# Union type punning
+union.*uint|Use memcpy for type punning|union {\n    uint32_t i;\n    float f;\n} u;\nu.f = value;\nresult = u.i;|uint32_t result;\nfloat value = 3.14f;\nmemcpy(&result, &value, sizeof(result));|Type punning through unions is undefined behavior in C++. Use memcpy() which compilers optimize to direct access.
+
+# Packed structures
+__attribute__.*packed|Document structure layout and test on s390x|struct __attribute__((packed)) Data {\n    uint16_t field1;\n    uint32_t field2;\n};|// Document expected byte layout\nstruct __attribute__((packed)) Data {\n    uint16_t field1;  // Offset 0-1\n    uint32_t field2;  // Offset 2-5\n};\n// Test: sizeof(Data) should be 6|Packed structures have the same layout on all architectures, but verify alignment requirements are met.
+
+# Direct struct serialization
+fwrite.*sizeof|Serialize fields individually|struct Data data;\nfwrite(&data, sizeof(data), 1, fp);|struct Data data;\n// Serialize in network byte order\nuint32_t field1_net = htonl(data.field1);\nuint16_t field2_net = htons(data.field2);\nfwrite(&field1_net, sizeof(field1_net), 1, fp);\nfwrite(&field2_net, sizeof(field2_net), 1, fp);|Direct struct writes include padding and are endian-dependent. Serialize fields individually in a defined byte order.
+
+fread.*sizeof|Deserialize fields individually|struct Data data;\nfread(&data, sizeof(data), 1, fp);|struct Data data;\nuint32_t field1_net;\nuint16_t field2_net;\nfread(&field1_net, sizeof(field1_net), 1, fp);\nfread(&field2_net, sizeof(field2_net), 1, fp);\ndata.field1 = ntohl(field1_net);\ndata.field2 = ntohs(field2_net);|Direct struct reads are endian-dependent. Read fields individually and convert from network byte order.
+
+# Preprocessor endian checks
+__LITTLE_ENDIAN__|Use runtime detection or portable macros|#ifdef __LITTLE_ENDIAN__\n    // little-endian code\n#endif|#include <endian.h>\n#if __BYTE_ORDER == __LITTLE_ENDIAN\n    // little-endian code\n#elif __BYTE_ORDER == __BIG_ENDIAN\n    // big-endian code\n#endif|Use standard __BYTE_ORDER macros from <endian.h> for better portability.
+
+__BIG_ENDIAN__|Use runtime detection or portable macros|#ifdef __BIG_ENDIAN__\n    // big-endian code\n#endif|#include <endian.h>\n#if __BYTE_ORDER == __BIG_ENDIAN\n    // big-endian code\n#elif __BYTE_ORDER == __LITTLE_ENDIAN\n    // little-endian code\n#endif|Use standard __BYTE_ORDER macros. Better yet, write endian-neutral code.
+
+# Byte swapping
+__builtin_bswap|Use portable byte order functions|uint32_t swapped = __builtin_bswap32(value);|// For network byte order:\nuint32_t network = htonl(value);\n\n// For explicit byte swap:\n#include <byteswap.h>\nuint32_t swapped = bswap_32(value);|Prefer htonl/ntohl for network protocols. Use bswap_* from <byteswap.h> for explicit swaps.
+
+# Pointer casts
+\*.*uint.*\*.*\)|Avoid pointer casts or use memcpy|uint32_t value = *(uint32_t*)ptr;|uint32_t value;\nmemcpy(&value, ptr, sizeof(value));\n// If from network: value = ntohl(value);|Pointer casts can cause alignment issues. Use memcpy() and convert byte order if needed.
+
+# Inline assembly
+__asm__|Avoid or provide portable alternative|__asm__("bswap %0" : "=r"(x) : "0"(x));|// Use portable functions\n#include <byteswap.h>\nx = bswap_32(x);\n\n// Or provide fallback\n#ifdef __s390x__\n    // s390x-specific code\n#else\n    __asm__("bswap %0" : "=r"(x) : "0"(x));\n#endif|Inline assembly is architecture-specific. Use portable functions or provide architecture-specific implementations.
+
+# Memory operations
+memcpy|Verify endian-neutrality of copied data|memcpy(dest, src, sizeof(uint32_t));|// If copying network data:\nuint32_t temp;\nmemcpy(&temp, src, sizeof(temp));\ndest_value = ntohl(temp);\n\n// If copying host data:\nmemcpy(dest, src, sizeof(uint32_t)); // OK|memcpy() itself is endian-neutral, but verify the data being copied doesn't need byte order conversion.
+
+# Bit operations
+<<.*[0-9]+|Verify bit operations are endian-neutral|uint32_t mask = 1 << bit_pos;|// This is usually OK for bit flags\nuint32_t mask = 1 << bit_pos;\n\n// For byte extraction, be explicit:\nuint8_t byte = (value >> (8 * byte_index)) & 0xFF;|Bit shifts on integers are endian-neutral. Issues arise when treating integers as byte arrays.
+
+>>.*[0-9]+|Verify bit operations are endian-neutral|uint32_t result = value >> 8;|// Right shift is endian-neutral\nuint32_t result = value >> 8;\n\n// For byte access, use explicit indexing:\nuint8_t* bytes = (uint8_t*)&value;\nuint8_t byte = bytes[index]; // Endian-dependent!|Right shifts are endian-neutral. Be careful when accessing shifted values as byte arrays.

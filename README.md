@@ -1,78 +1,114 @@
-<!-- This should be the location of the title of the repository, normally the short name -->
-# repo-template
+# S390x Linux MCP Server
 
-<!-- Build Status, is a great thing to have at the top of your repository, it shows that you take your CI/CD as first class citizens -->
-<!-- [![Build Status](https://travis-ci.org/jjasghar/ibm-cloud-cli.svg?branch=master)](https://travis-ci.org/jjasghar/ibm-cloud-cli) -->
+MCP server for building and porting open-source software on s390x Linux (IBM Z / LinuxONE). Provides knowledge base search across 96+ software packages, build script generation, endian analysis, and container architecture checking.
 
-<!-- Not always needed, but a scope helps the user understand in a short sentance like below, why this repo exists -->
-## Scope
+## Tools
 
-The purpose of this project is to provide a template for new open source repositories.
+| Tool | Description |
+|------|-------------|
+| `knowledge_base_search` | Hybrid semantic+keyword search over build guides, porting fixes, and scripts |
+| `build_script_generate` | Retrieve build scripts for specific software/version/distro combinations |
+| `check_s390x_image` | Check if a Docker image supports the s390x architecture |
+| `endian_scan` | Scan source code for endian-specific issues (C/C++, Go, Java, Python) |
+| `port_analysis` | Comprehensive porting assessment with portability score and fix recommendations |
+| `skopeo` | Container image remote inspection for s390x support |
 
-<!-- A more detailed Usage or detailed explaination of the repository here -->
-## Usage
+## Quick Start
 
-This repository contains some example best practices for open source repositories:
+### Docker (recommended)
 
-* [LICENSE](LICENSE)
-* [README.md](README.md)
-* [CONTRIBUTING.md](CONTRIBUTING.md)
-* [MAINTAINERS.md](MAINTAINERS.md)
-* [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-<!-- A Changelog allows you to track major changes and things that happen, https://github.com/github-changelog-generator/github-changelog-generator can help automate the process -->
-* [CHANGELOG.md](CHANGELOG.md)
+```bash
+docker run --rm -i -v $(pwd):/workspace s390x-mcp:latest
+```
 
-> These are optional
+### Claude Code
 
-<!-- The following are OPTIONAL, but strongly suggested to have in your repository. -->
-* [dco.yml](.github/dco.yml) - This enables DCO bot for you, please take a look https://github.com/probot/dco for more details.
-* [travis.yml](.travis.yml) - This is a example `.travis.yml`, please take a look https://docs.travis-ci.com/user/tutorial/ for more details.
+Copy `agent-integrations/claude-code/.mcp.json` to your project root, or add to your Claude Code settings:
 
-These may be copied into a new or existing project to make it easier for developers not on a project team to collaborate.
+```json
+{
+  "mcpServers": {
+    "s390x": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "-v", "${workspaceFolder}:/workspace", "s390x-mcp:latest"]
+    }
+  }
+}
+```
 
-<!-- A notes section is useful for anything that isn't covered in the Usage or Scope. Like what we have below. -->
-## Notes
+### Local Development
 
-**NOTE: While this boilerplate project uses the Apache 2.0 license, when
-establishing a new repo using this template, please use the
-license that was approved for your project.**
+```bash
+pip install -e .
+pip install -r mcp-server/requirements.txt
+python mcp-server/server.py
+```
 
-**NOTE: This repository has been configured with the [DCO bot](https://github.com/probot/dco).
-When you set up a new repository that uses the Apache license, you should
-use the DCO to manage contributions. The DCO bot will help enforce that.
-Please contact one of the IBM GH Org stewards.**
+## Knowledge Sources
 
-<!-- Questions can be useful but optional, this gives you a place to say, "This is how to contact this project maintainers or create PRs -->
-If you have any questions or issues you can create a new [issue here][issues].
+- **s390x-oss-kb**: 127 structured fix entries with root causes, fix details, and patch URLs
+- **linux-on-ibm-z/docs/wiki**: 117 wiki pages with step-by-step build instructions
+- **linux-on-ibm-z/scripts**: 74 packages with version-specific build scripts
+- **bob-portgenesis patterns**: Endian detection patterns for C/C++, Go, Java, Python
 
-Pull requests are very welcome! Make sure your patches are well tested.
-Ideally create a topic branch for every separate change you make. For
-example:
+## Knowledge Base
 
-1. Fork the repo
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Pre-built knowledge base artifacts are included in the repo under `mcp-server/data/`. No additional setup is needed to start using the server.
+
+If you want to rebuild the knowledge base (e.g., to incorporate the latest upstream content), run the embedding pipeline:
+
+```bash
+# Clone the knowledge source repos
+git clone --depth 1 https://github.com/linux-on-ibm-z/docs.wiki.git /tmp/wiki
+git clone --depth 1 https://github.com/linux-on-ibm-z/scripts.git /tmp/scripts
+
+# Generate chunks from all sources
+python embedding-generation/generate_chunks.py \
+  --oss-kb-dir /path/to/s390x-oss-kb \
+  --wiki-dir /tmp/wiki \
+  --scripts-dir /tmp/scripts \
+  --output-dir embedding-generation/output \
+  --script-index-output mcp-server/data/script_index.json
+
+# Generate vector store
+python embedding-generation/local_vectorstore_creation.py \
+  --metadata embedding-generation/output/metadata.json \
+  --output-dir mcp-server/data
+
+# Evaluate search quality
+bash embedding-generation/run_eval.sh
+```
+
+See [docs/MAINTENANCE.md](docs/MAINTENANCE.md) for detailed maintenance and update procedures.
+
+## Architecture
+
+```
+Embedding Generation (offline)          MCP Server (runtime)
+┌──────────────────────────┐           ┌──────────────────────────────┐
+│ s390x-oss-kb (fixes) ─┐  │           │ FastMCP (stdio)              │
+│ wiki pages ───────────>│──┤ baked     │ ├── knowledge_base_search    │
+│ build scripts ────────>│  │ into      │ ├── build_script_generate    │
+│                  chunks│  │ Docker    │ ├── check_s390x_image        │
+│                  embed │  ├──────────>│ ├── endian_scan              │
+│                  index │  │           │ ├── port_analysis            │
+└──────────────────────────┘           │ └── skopeo                   │
+                                       └──────────────────────────────┘
+```
+
+## Testing
+
+```bash
+# Run all tests
+python -m pytest mcp-server/tests/ -v
+
+# Run specific test suites
+python -m pytest mcp-server/tests/test_endian_scan.py -v
+python -m pytest mcp-server/tests/test_port_analysis.py -v
+python -m pytest mcp-server/tests/test_docker_utils.py -v
+python -m pytest mcp-server/tests/test_kb_search.py -v
+```
 
 ## License
 
-All source files must include a Copyright and License header. The SPDX license header is 
-preferred because it can be easily scanned.
-
-If you would like to see the detailed LICENSE click [here](LICENSE).
-
-```text
-#
-# Copyright IBM Corp. {Year project was created} - {Current Year}
-# SPDX-License-Identifier: Apache-2.0
-#
-```
-## Authors
-
-Optionally, you may include a list of authors, though this is redundant with the built-in
-GitHub list of contributors.
-
-- Author: New OpenSource IBMer <new-opensource-ibmer@ibm.com>
-
-[issues]: https://github.com/IBM/repo-template/issues/new
+Apache 2.0

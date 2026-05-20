@@ -1,0 +1,9 @@
+fastmcp>=2.0.0
+mcp
+sentence-transformers>=5.4
+torch>=2.0.0
+usearch
+rank-bm25
+numpy
+pyyaml
+requests

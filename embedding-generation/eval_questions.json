@@ -1,0 +1,136 @@
+[
+  {
+    "id": "grafana-build",
+    "question": "How do I build Grafana on s390x?",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Grafana"
+    ]
+  },
+  {
+    "id": "postgresql-build",
+    "question": "PostgreSQL build instructions for s390x Linux",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-PostgreSQL-17.x"
+    ]
+  },
+  {
+    "id": "tensorflow-build",
+    "question": "How to compile TensorFlow on IBM Z",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-TensorFlow"
+    ]
+  },
+  {
+    "id": "nginx-build",
+    "question": "Build NGINX from source on s390x",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-NGINX"
+    ]
+  },
+  {
+    "id": "cassandra-fix",
+    "question": "Cassandra snappy-java fix for s390x",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Apache-Cassandra",
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Cassandra"
+    ]
+  },
+  {
+    "id": "elasticsearch-build",
+    "question": "Elasticsearch s390x build guide",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Elasticsearch"
+    ]
+  },
+  {
+    "id": "python-build",
+    "question": "Build Python 3.13 on RHEL s390x",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Python-3.13.x"
+    ]
+  },
+  {
+    "id": "kafka-build",
+    "question": "Apache Kafka on s390x Linux",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Apache-Kafka"
+    ]
+  },
+  {
+    "id": "prometheus-build",
+    "question": "How to build Prometheus on IBM Z mainframe",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Prometheus"
+    ]
+  },
+  {
+    "id": "mysql-ubuntu",
+    "question": "MySQL build script for Ubuntu on s390x",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-MySQL"
+    ]
+  },
+  {
+    "id": "endian-fix",
+    "question": "How to fix endianness issues when porting to s390x",
+    "expected_urls": []
+  },
+  {
+    "id": "platform-assumption",
+    "question": "platform assumption fixes for s390x porting",
+    "expected_urls": []
+  },
+  {
+    "id": "kubernetes-build",
+    "question": "Build Kubernetes components on s390x",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Kubernetes-Minikube",
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Calico-with-Kubernetes"
+    ]
+  },
+  {
+    "id": "consul-build",
+    "question": "Consul build instructions for s390x Linux",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Consul"
+    ]
+  },
+  {
+    "id": "rabbitmq-build",
+    "question": "How to set up RabbitMQ on s390x",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-RabbitMQ"
+    ]
+  },
+  {
+    "id": "docker-ubuntu-rhel",
+    "question": "Dependencies for building software on Ubuntu vs RHEL on s390x",
+    "expected_urls": []
+  },
+  {
+    "id": "bazel-s390x",
+    "question": "Bazel architecture-specific patch for s390x",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Bazel"
+    ]
+  },
+  {
+    "id": "ruby-build",
+    "question": "Build Ruby on Rails on s390x mainframe",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-Ruby"
+    ]
+  },
+  {
+    "id": "couchdb-build",
+    "question": "CouchDB build guide for IBM Z",
+    "expected_urls": [
+      "https://github.com/linux-on-ibm-z/docs/wiki/Building-CouchDB"
+    ]
+  },
+  {
+    "id": "go-build",
+    "question": "Install Go programming language on s390x",
+    "expected_urls": []
+  }
+]

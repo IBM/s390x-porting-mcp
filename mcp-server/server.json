@@ -1,0 +1,20 @@
+{
+  "name": "io.github.s390x-mcp/s390x-mcp",
+  "version": "0.1.0",
+  "title": "S390x Linux MCP Server",
+  "description": "MCP server for building and porting open-source software on s390x Linux (IBM Z). Provides knowledge base search, build script generation, endian analysis, and container architecture checking.",
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "s390x-mcp:latest",
+      "transport": "stdio",
+      "runtimeArguments": [
+        "run",
+        "--rm",
+        "-i",
+        "-v",
+        "{workspace_path}:/workspace"
+      ]
+    }
+  ]
+}

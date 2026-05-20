@@ -1,0 +1,7 @@
+sentence-transformers>=5.4
+torch>=2.0.0
+usearch
+numpy
+pyyaml
+requests
+rank-bm25
