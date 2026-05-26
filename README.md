@@ -50,7 +50,7 @@ Copy `agent-integrations/claude-code/.mcp.json` to your project root, or add to 
 
 ### IBM Bob
 
-Copy `agent-integrations/ibm-bob/mcp.json` to your project root, or add to your IBM Bob MCP settings:
+Copy `agent-integrations/ibm-bob/mcp.json` to your project's `.bob/` folder, or add to your IBM Bob MCP settings:
 
 ```json
 {
