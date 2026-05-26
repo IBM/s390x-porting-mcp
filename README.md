@@ -48,6 +48,21 @@ Copy `agent-integrations/claude-code/.mcp.json` to your project root, or add to 
 }
 ```
 
+### IBM Bob
+
+Copy `agent-integrations/ibm-bob/mcp.json` to your project root, or add to your IBM Bob MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "s390x": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "-v", "${workspaceFolder}:/workspace", "s390x-mcp:latest"]
+    }
+  }
+}
+```
+
 ### Local Development
 
 ```bash
