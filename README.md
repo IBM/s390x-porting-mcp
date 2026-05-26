@@ -17,6 +17,18 @@ MCP server for building and porting open-source software on s390x Linux (IBM Z /
 
 ### Docker (recommended)
 
+Build the Docker image first:
+
+```bash
+# Build the embeddings image
+docker build -t s390x-mcp:embeddings-latest -f embedding-generation/Dockerfile .
+
+# Build the MCP server image
+docker build -t s390x-mcp:latest -f mcp-server/Dockerfile .
+```
+
+Then run the server:
+
 ```bash
 docker run --rm -i -v $(pwd):/workspace s390x-mcp:latest
 ```
