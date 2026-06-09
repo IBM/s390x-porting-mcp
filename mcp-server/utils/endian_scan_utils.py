@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 from utils.config import PATTERNS_DIR
 
@@ -63,26 +63,6 @@ class FixRecommendation:
     code_before: str
     code_after: str
     explanation: str
-
-
-@dataclass
-class Finding:
-    line: int
-    severity: str
-    description: str
-    matched_code: str
-    fix_recommendation: FixRecommendation | None = None
-
-
-@dataclass
-class ScanResult:
-    overall_status: str
-    critical_count: int
-    warning_count: int
-    info_count: int
-    findings: list[dict]
-    language: str
-    total_lines: int
 
 
 _pattern_cache: dict[str, list[Pattern]] = {}

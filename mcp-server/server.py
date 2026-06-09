@@ -61,7 +61,7 @@ def build_script_generate(
         return find_and_return_script(software, version, distro)
     except Exception as e:
         return format_tool_error(
-            tool="build_script_generate", exc=e, args={"software": software, "version": version}
+            tool="build_script_generate", exc=e, args={"software": software, "version": version, "distro": distro}
         )
 
 

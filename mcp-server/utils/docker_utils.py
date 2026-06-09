@@ -67,9 +67,9 @@ def _extract_architectures(manifest: dict) -> list[str]:
                 os_name = platform.get("os", "linux")
                 architectures.append(f"{os_name}/{arch}")
     else:
-        config = manifest.get("config", {})
-        if config:
-            architectures.append("linux/amd64")
+        arch = manifest.get("architecture", "")
+        if arch:
+            architectures.append(f"linux/{arch}")
 
     return sorted(set(architectures))
 

@@ -48,7 +48,16 @@ def _find_package(software: str) -> tuple[str, dict] | None:
     return None
 
 
-def _find_version(pkg_data: dict, version: str | None = None) -> tuple[str, dict] | None:
+def _distro_matches(ver_data: dict, distro: str) -> bool:
+    distro_lower = distro.lower()
+    return any(distro_lower in d.lower() for d in ver_data.get("distros", []))
+
+
+def _find_version(
+    pkg_data: dict,
+    version: str | None = None,
+    distro: str | None = None,
+) -> tuple[str, dict] | None:
     versions = pkg_data.get("versions", {})
     if not versions:
         return None
@@ -60,6 +69,12 @@ def _find_version(pkg_data: dict, version: str | None = None) -> tuple[str, dict
             if v.startswith(version):
                 return v, data
         return None
+
+    if distro:
+        sorted_versions = sorted(versions.keys(), reverse=True)
+        for v in sorted_versions:
+            if _distro_matches(versions[v], distro):
+                return v, versions[v]
 
     sorted_versions = sorted(versions.keys(), reverse=True)
     latest = sorted_versions[0]
@@ -84,7 +99,7 @@ def find_and_return_script(
                     "related_guides": kb_results,
                 }
         except Exception:
-            pass
+            logger.debug("KB search fallback failed for '%s'", software, exc_info=True)
 
         return {
             "status": "not_found",
@@ -92,7 +107,7 @@ def find_and_return_script(
         }
 
     pkg_name, pkg_data = match
-    version_match = _find_version(pkg_data, version)
+    version_match = _find_version(pkg_data, version, distro)
 
     if version_match is None:
         available = list(pkg_data.get("versions", {}).keys())

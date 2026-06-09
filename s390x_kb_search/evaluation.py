@@ -81,6 +81,10 @@ def run_evaluation(
 
     results = evaluate_search(questions, resources, k=k)
 
+    if "error" in results:
+        logger.error("Evaluation failed: %s", results["error"])
+        return results
+
     logger.info("Evaluation results:")
     logger.info("  Hit@1: %.4f", results["hit_at_1"])
     logger.info("  Hit@3: %.4f", results["hit_at_3"])

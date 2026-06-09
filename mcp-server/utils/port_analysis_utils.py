@@ -189,7 +189,10 @@ def full_port_analysis(
             from utils.kb_search_utils import search_knowledge_base
             existing_build_guides = search_knowledge_base(f"build {software_name} s390x")
         except Exception:
-            pass
+            import logging
+            logging.getLogger(__name__).debug(
+                "KB search failed for '%s'", software_name, exc_info=True
+            )
 
     return {
         "endian_analysis": endian_results,

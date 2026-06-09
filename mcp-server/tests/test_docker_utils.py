@@ -48,9 +48,14 @@ class TestExtractArchitectures:
         assert "linux/s390x" in archs
 
     def test_single_arch_manifest(self):
+        manifest = {"architecture": "s390x", "config": {"mediaType": "application/vnd.docker.container.image.v1+json"}}
+        archs = _extract_architectures(manifest)
+        assert archs == ["linux/s390x"]
+
+    def test_single_arch_manifest_no_architecture(self):
         manifest = {"config": {"mediaType": "application/vnd.docker.container.image.v1+json"}}
         archs = _extract_architectures(manifest)
-        assert len(archs) >= 1
+        assert archs == []
 
     def test_filters_unknown_arch(self):
         manifest = {

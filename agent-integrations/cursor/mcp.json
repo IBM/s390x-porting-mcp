@@ -4,7 +4,7 @@
       "command": "docker",
       "args": [
         "run", "--rm", "-i",
-        "-v", ".:/workspace",
+        "-v", "${workspaceFolder}:/workspace",
         "s390x-mcp:latest"
       ]
     }

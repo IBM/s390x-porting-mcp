@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
 from rank_bm25 import BM25Okapi
@@ -12,5 +12,4 @@ class SearchResources:
     embedding_model: Any
     usearch_index: Any | None = None
     bm25_index: BM25Okapi | None = None
-    bm25_corpus_tokens: list[list[str]] = field(default_factory=list)
-    default_k: int = 5
+    bm25_corpus_tokens: list[list[str]] | None = None

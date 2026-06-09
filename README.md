@@ -73,10 +73,15 @@ python mcp-server/server.py
 
 ## Knowledge Sources
 
+Embedded in the vector store (searched by `knowledge_base_search`):
+
 - **s390x-oss-kb**: 127 structured fix entries with root causes, fix details, and patch URLs
 - **linux-on-ibm-z/docs/wiki**: 117 wiki pages with step-by-step build instructions
 - **linux-on-ibm-z/scripts**: 74 packages with version-specific build scripts
-- **bob-portgenesis patterns**: Endian detection patterns for C/C++, Go, Java, Python
+
+Runtime patterns (loaded directly by `endian_scan` and `port_analysis`):
+
+- **mcp-server/patterns/**: Endian detection patterns for C/C++, Go, Java, Python (derived from bob-portgenesis)
 
 ## Knowledge Base
 

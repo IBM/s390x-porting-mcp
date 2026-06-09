@@ -99,13 +99,17 @@ If metrics drop after an update, check:
 - Do stopwords or reranking signals in `s390x_kb_search/config.py` need updating?
 - Are new eval questions needed for new content? Add them to `eval_questions.json`.
 
-### Step 5: Rebuild the Docker image
+### Step 5: Rebuild the Docker images
 
 ```bash
+# Rebuild the embeddings image (contains metadata.json and usearch_index.bin)
+docker build -t s390x-mcp:embeddings-latest -f embedding-generation/Dockerfile .
+
+# Rebuild the MCP server image (pulls embeddings from the image above)
 docker build -t s390x-mcp:latest -f mcp-server/Dockerfile .
 ```
 
-The Dockerfile bakes `mcp-server/data/` into the image, so the updated knowledge is included.
+The server Dockerfile uses a multi-stage build that copies `metadata.json` and `usearch_index.bin` from the embeddings image, so the embeddings image must be built first.
 
 ### Step 6: Verify
 
@@ -147,6 +151,7 @@ bash embedding-generation/run_eval.sh
 python -m pytest mcp-server/tests/ -v
 
 # 4. Ship
+docker build -t s390x-mcp:embeddings-latest -f embedding-generation/Dockerfile .
 docker build -t s390x-mcp:latest -f mcp-server/Dockerfile .
 ```
 
@@ -181,8 +186,16 @@ Key parameters in `s390x_kb_search/config.py`:
 | `K_RESULTS` | 5 | Number of results returned. |
 | `RRF_K` | 60 | Reciprocal rank fusion constant. |
 | `S390X_STOPWORDS` | set | Domain stopwords removed before search. |
-| Intent token sets | various | Reranking bonuses for Build Guide (+0.30), Fix Entry (+0.25), etc. |
-| `DISTRO_TOKENS` | set | Distro keywords that trigger +0.15 reranking bonus. |
+| Intent token sets | various | Token sets that trigger intent-based reranking (see below). |
+| `DISTRO_TOKENS` | set | Distro keywords that trigger reranking bonus (see below). |
+
+Reranking bonus weights are in `s390x_kb_search/search.py` (`rerank_candidates`):
+
+| Bonus | Weight | Trigger |
+|-------|--------|---------|
+| Build Guide intent | +0.30 | Query tokens match `BUILD_GUIDE_INTENT_TOKENS` and doc type matches |
+| Fix Entry / Porting intent | +0.25 | Query tokens match `FIX_INTENT_TOKENS` or `PORTING_INTENT_TOKENS` |
+| Distro match | +0.15 | Query mentions a distro from `DISTRO_TOKENS` and entry contains it |
 
 After tuning, always re-run `embedding-generation/run_eval.sh` to confirm metrics don't regress.
 
@@ -192,6 +205,7 @@ If you change the Docker image name/tag or add new tools, update the MCP configs
 
 - `agent-integrations/claude-code/.mcp.json`
 - `agent-integrations/cursor/mcp.json`
+- `agent-integrations/ibm-bob/mcp.json`
 - `agent-integrations/vs-code/mcp.json`
 - `agent-integrations/windsurf/mcp_config.json`
 
