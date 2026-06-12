@@ -1,5 +1,6 @@
 import logging
 import sys
+from typing import Optional
 
 from fastmcp import FastMCP
 
@@ -25,7 +26,7 @@ mcp = FastMCP("s390x-mcp")
 )
 def knowledge_base_search(
     query: str,
-    invocation_reason: str | None = None,
+    invocation_reason: Optional[str] = None,
 ) -> list[dict] | dict:
     log_invocation_reason(tool="knowledge_base_search", reason=invocation_reason, args={"query": query})
     try:
@@ -46,9 +47,9 @@ def knowledge_base_search(
 )
 def build_script_generate(
     software: str,
-    version: str | None = None,
-    distro: str | None = None,
-    invocation_reason: str | None = None,
+    version: Optional[str] = None,
+    distro: Optional[str] = None,
+    invocation_reason: Optional[str] = None,
 ) -> dict:
     log_invocation_reason(
         tool="build_script_generate",
@@ -74,7 +75,7 @@ def build_script_generate(
 )
 def check_s390x_image(
     image: str,
-    invocation_reason: str | None = None,
+    invocation_reason: Optional[str] = None,
 ) -> dict:
     log_invocation_reason(tool="check_s390x_image", reason=invocation_reason, args={"image": image})
     try:
@@ -95,9 +96,9 @@ def check_s390x_image(
 )
 def endian_scan(
     source_code: str,
-    language: str | None = None,
-    file_path: str | None = None,
-    invocation_reason: str | None = None,
+    language: Optional[str] = None,
+    file_path: Optional[str] = None,
+    invocation_reason: Optional[str] = None,
 ) -> dict:
     log_invocation_reason(
         tool="endian_scan",
@@ -122,10 +123,10 @@ def endian_scan(
 )
 def port_analysis(
     source_code: str,
-    language: str | None = None,
-    file_path: str | None = None,
-    software_name: str | None = None,
-    invocation_reason: str | None = None,
+    language: Optional[str] = None,
+    file_path: Optional[str] = None,
+    software_name: Optional[str] = None,
+    invocation_reason: Optional[str] = None,
 ) -> dict:
     log_invocation_reason(
         tool="port_analysis",
@@ -149,10 +150,10 @@ def port_analysis(
     )
 )
 def skopeo(
-    image: str | None = None,
+    image: Optional[str] = None,
     transport: str = "docker",
     raw: bool = False,
-    invocation_reason: str | None = None,
+    invocation_reason: Optional[str] = None,
 ) -> dict:
     log_invocation_reason(tool="skopeo", reason=invocation_reason, args={"image": image})
     try:
