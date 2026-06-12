@@ -4,7 +4,7 @@ import logging
 
 import requests
 
-from utils.config import DOCKER_REGISTRY_TIMEOUT, TARGET_ARCHITECTURES
+from utils.config import DOCKER_REGISTRY_TIMEOUT
 
 logger = logging.getLogger(__name__)
 

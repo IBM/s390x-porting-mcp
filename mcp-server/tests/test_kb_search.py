@@ -66,7 +66,10 @@ class TestDetectIntent:
         assert _detect_intent({"build", "grafana"}) == "Build Guide"
 
     def test_fix_intent(self):
-        assert _detect_intent({"fix", "cassandra"}) == "Fix Entry"
+        assert _detect_intent({"fix", "cassandra"}) == "Build Guide"
+
+    def test_porting_intent(self):
+        assert _detect_intent({"porting", "endian"}) == "Build Guide"
 
     def test_script_intent(self):
         assert _detect_intent({"script", "automated"}) == "Build Script"

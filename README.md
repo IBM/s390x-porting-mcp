@@ -6,7 +6,7 @@ MCP server for building and porting open-source software on s390x Linux (IBM Z /
 
 | Tool | Description |
 |------|-------------|
-| `knowledge_base_search` | Hybrid semantic+keyword search over build guides, porting fixes, and scripts |
+| `knowledge_base_search` | Hybrid semantic+keyword search over build guides and scripts |
 | `build_script_generate` | Retrieve build scripts for specific software/version/distro combinations |
 | `check_s390x_image` | Check if a Docker image supports the s390x architecture |
 | `endian_scan` | Scan source code for endian-specific issues (C/C++, Go, Java, Python) |
@@ -75,7 +75,6 @@ python mcp-server/server.py
 
 Embedded in the vector store (searched by `knowledge_base_search`):
 
-- **s390x-oss-kb**: 127 structured fix entries with root causes, fix details, and patch URLs
 - **linux-on-ibm-z/docs/wiki**: 117 wiki pages with step-by-step build instructions
 - **linux-on-ibm-z/scripts**: 74 packages with version-specific build scripts
 
@@ -96,7 +95,6 @@ git clone --depth 1 https://github.com/linux-on-ibm-z/scripts.git /tmp/scripts
 
 # Generate chunks from all sources
 python embedding-generation/generate_chunks.py \
-  --oss-kb-dir /path/to/s390x-oss-kb \
   --wiki-dir /tmp/wiki \
   --scripts-dir /tmp/scripts \
   --output-dir embedding-generation/output \
@@ -118,12 +116,12 @@ See [docs/MAINTENANCE.md](docs/MAINTENANCE.md) for detailed maintenance and upda
 ```
 Embedding Generation (offline)          MCP Server (runtime)
 ┌──────────────────────────┐           ┌──────────────────────────────┐
-│ s390x-oss-kb (fixes) ─┐  │           │ FastMCP (stdio)              │
-│ wiki pages ───────────>│──┤ baked     │ ├── knowledge_base_search    │
-│ build scripts ────────>│  │ into      │ ├── build_script_generate    │
-│                  chunks│  │ Docker    │ ├── check_s390x_image        │
-│                  embed │  ├──────────>│ ├── endian_scan              │
-│                  index │  │           │ ├── port_analysis            │
+│ wiki pages ───────────┐  │           │ FastMCP (stdio)              │
+│ build scripts ────────>──┤ baked     │ ├── knowledge_base_search    │
+│                  chunks│  │ into      │ ├── build_script_generate    │
+│                  embed │  │ Docker    │ ├── check_s390x_image        │
+│                  index │  ├──────────>│ ├── endian_scan              │
+│                        │  │           │ ├── port_analysis            │
 └──────────────────────────┘           │ └── skopeo                   │
                                        └──────────────────────────────┘
 ```

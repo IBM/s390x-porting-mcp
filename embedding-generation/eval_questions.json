@@ -71,16 +71,6 @@
     ]
   },
   {
-    "id": "endian-fix",
-    "question": "How to fix endianness issues when porting to s390x",
-    "expected_urls": []
-  },
-  {
-    "id": "platform-assumption",
-    "question": "platform assumption fixes for s390x porting",
-    "expected_urls": []
-  },
-  {
     "id": "kubernetes-build",
     "question": "Build Kubernetes components on s390x",
     "expected_urls": [

@@ -1,7 +1,7 @@
 [project]
 name = "s390x-kb-search"
 version = "0.1.0"
-description = "Knowledge base search for s390x/IBM Z Linux build guides and porting fixes"
+description = "Knowledge base search for s390x/IBM Z Linux build guides and build scripts"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
 dependencies = [

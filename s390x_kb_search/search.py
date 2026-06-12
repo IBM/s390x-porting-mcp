@@ -11,7 +11,6 @@ from s390x_kb_search.config import (
     BUILD_SCRIPT_INTENT_TOKENS,
     DISTANCE_THRESHOLD,
     DISTRO_TOKENS,
-    FIX_INTENT_TOKENS,
     K_RESULTS,
     PORTING_INTENT_TOKENS,
     RRF_K,
@@ -102,12 +101,10 @@ def _token_overlap(tokens_a: set[str], tokens_b: set[str]) -> float:
 def _detect_intent(query_tokens: set[str]) -> str | None:
     if query_tokens & BUILD_GUIDE_INTENT_TOKENS:
         return "Build Guide"
-    if query_tokens & FIX_INTENT_TOKENS:
-        return "Fix Entry"
     if query_tokens & BUILD_SCRIPT_INTENT_TOKENS:
         return "Build Script"
     if query_tokens & PORTING_INTENT_TOKENS:
-        return "Fix Entry"
+        return "Build Guide"
     return None
 
 

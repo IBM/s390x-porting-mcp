@@ -21,14 +21,11 @@ BUILD_SCRIPT_INTENT_TOKENS = {
     "script", "automated", "bash", "shell", "automate", "automation",
 }
 
-FIX_INTENT_TOKENS = {
-    "fix", "patch", "workaround", "issue", "error", "fail", "failure",
-    "broken", "crash", "bug",
-}
-
 PORTING_INTENT_TOKENS = {
     "port", "porting", "endian", "big-endian", "little-endian",
     "migrate", "migration", "compatibility", "architecture",
+    "fix", "patch", "workaround", "issue", "error", "fail", "failure",
+    "broken", "crash", "bug",
 }
 
 DISTRO_TOKENS = {

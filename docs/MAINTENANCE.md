@@ -7,9 +7,8 @@ Source Repos                    Offline Pipeline                     Runtime Art
 ─────────────                   ────────────────                     ─────────────────
 linux-on-ibm-z/docs.wiki ─┐
                            ├─► generate_chunks.py ─► metadata.json
-linux-on-ibm-z/scripts ───┤                         chunks.yaml
-                           │                         script_index.json
-s390x-oss-kb/fixes ────────┘         │
+linux-on-ibm-z/scripts ───┘                         chunks.yaml
+                                     │               script_index.json
                                      ▼
                           local_vectorstore_creation.py
                                      │
@@ -23,13 +22,12 @@ s390x-oss-kb/fixes ────────┘         │
                               Docker build
 ```
 
-The three knowledge sources:
+The two knowledge sources:
 
 | Source | Content | Repo |
 |--------|---------|------|
 | **linux-on-ibm-z/docs wiki** | ~117 build guides (markdown) | `github.com/linux-on-ibm-z/docs.wiki.git` |
 | **linux-on-ibm-z/scripts** | ~74 build scripts (shell) | `github.com/linux-on-ibm-z/scripts.git` |
-| **s390x-oss-kb** | ~127 fix entries (JSON) | Internal or local repo |
 
 ## Updating the Knowledge Base
 
@@ -42,20 +40,17 @@ git clone --depth 1 https://github.com/linux-on-ibm-z/scripts.git /tmp/scripts
 
 If you already have local clones, `git pull` instead of re-cloning.
 
-The `s390x-oss-kb` repo should be wherever you keep it locally. The pipeline reads from its `fixes/` directory (and optionally `packages.json`).
-
 ### Step 2: Generate chunks
 
 ```bash
 python embedding-generation/generate_chunks.py \
-  --oss-kb-dir /path/to/s390x-oss-kb \
   --wiki-dir /tmp/wiki \
   --scripts-dir /tmp/scripts \
   --output-dir embedding-generation/output \
   --script-index-output mcp-server/data/script_index.json
 ```
 
-All `--*-dir` flags are optional. Omit a source to skip it (e.g., if only the wiki changed, you can pass just `--wiki-dir`). However, the vector index is rebuilt from scratch each time, so you typically want to include all sources to get a complete index.
+Both `--*-dir` flags are optional. Omit a source to skip it (e.g., if only the wiki changed, you can pass just `--wiki-dir`). However, the vector index is rebuilt from scratch each time, so you typically want to include both sources to get a complete index.
 
 **Outputs:**
 - `embedding-generation/output/metadata.json` -- chunk metadata for all sources
@@ -122,7 +117,6 @@ Then test the tools interactively via Claude Code or another MCP client.
 ## When to Update
 
 - **Wiki and scripts repos** are updated when the linux-on-ibm-z community publishes new build guides or supports new software versions/distros. Watch or periodically check those repos.
-- **s390x-oss-kb** fix entries are added as new porting issues are found and resolved.
 - A reasonable cadence: **monthly, or when upstream repos have notable new content**.
 
 ## Quick Reference
@@ -136,7 +130,6 @@ cd /tmp/scripts && git pull
 
 # 2. Regenerate everything
 python embedding-generation/generate_chunks.py \
-  --oss-kb-dir /path/to/s390x-oss-kb \
   --wiki-dir /tmp/wiki \
   --scripts-dir /tmp/scripts \
   --output-dir embedding-generation/output \
@@ -194,7 +187,7 @@ Reranking bonus weights are in `s390x_kb_search/search.py` (`rerank_candidates`)
 | Bonus | Weight | Trigger |
 |-------|--------|---------|
 | Build Guide intent | +0.30 | Query tokens match `BUILD_GUIDE_INTENT_TOKENS` and doc type matches |
-| Fix Entry / Porting intent | +0.25 | Query tokens match `FIX_INTENT_TOKENS` or `PORTING_INTENT_TOKENS` |
+| Porting intent | +0.25 | Query tokens match `PORTING_INTENT_TOKENS` (routes to Build Guide) |
 | Distro match | +0.15 | Query mentions a distro from `DISTRO_TOKENS` and entry contains it |
 
 After tuning, always re-run `embedding-generation/run_eval.sh` to confirm metrics don't regress.

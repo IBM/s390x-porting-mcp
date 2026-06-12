@@ -6,13 +6,11 @@ No MCP server exists for IBM Z / s390x Linux. Developers and operations teams po
 
 ## Knowledge Sources
 
-Three sources are merged into a unified knowledge base:
+Two sources are merged into a unified knowledge base:
 
-1. **s390x-oss-kb** (github.ibm.com/lzhang/s390x-oss-kb): 127 structured fix entries (JSON), 96 package index, 52 detection patterns across 8 categories. Automatically synced from wiki/scripts weekly.
+1. **linux-on-ibm-z/docs/wiki**: 117 wiki pages with step-by-step build instructions per software package. Multi-version, multi-distro (RHEL, SLES, Ubuntu). URL pattern: `github.com/linux-on-ibm-z/docs/wiki/Building-[Name]`
 
-2. **linux-on-ibm-z/docs/wiki**: 117 wiki pages with step-by-step build instructions per software package. Multi-version, multi-distro (RHEL, SLES, Ubuntu). URL pattern: `github.com/linux-on-ibm-z/docs/wiki/Building-[Name]`
-
-3. **linux-on-ibm-z/scripts**: 74 directories with version-specific shell build scripts. Pattern: `{package}/{version}/build_{package}.sh`
+2. **linux-on-ibm-z/scripts**: 74 directories with version-specific shell build scripts. Pattern: `{package}/{version}/build_{package}.sh`
 
 Pattern databases from **bob-portgenesis** (github.ibm.com/rishi/bob-portgenesis) are vendored for the endian scanning tools: 6 language-specific pattern files + 56-entry fix recommendations database.
 
@@ -21,8 +19,7 @@ Pattern databases from **bob-portgenesis** (github.ibm.com/rishi/bob-portgenesis
 ```
                      EMBEDDING GENERATION (offline)
   ┌────────────────────────────────────────────────────────────┐
-  │  s390x-oss-kb ──┐                                         │
-  │  wiki pages ────>│── chunk ── embed ── metadata.json       │
+  │  wiki pages ────┐── chunk ── embed ── metadata.json        │
   │  build scripts ─┘                      usearch_index.bin   │
   └────────────────────────────────────────────────────────────┘
                               │ baked into Docker image
@@ -60,8 +57,6 @@ s390x-mcp/
 │   ├── s390x-kb-sources.csv                # Source manifest
 │   ├── fetch_wiki_pages.py                 # Clone docs.wiki.git, read markdown
 │   ├── fetch_build_scripts.py              # Clone scripts repo, read shell files
-│   ├── load_oss_kb.py                      # Load s390x-oss-kb JSON fixes + patterns
-│   ├── document_chunking.py                # Section-aware markdown/JSON chunking
 │   ├── generate_chunks.py                  # Orchestrator: fetch -> parse -> chunk
 │   ├── local_vectorstore_creation.py       # SentenceTransformer + USearch index
 │   ├── eval_questions.json                 # Test questions with expected URLs
@@ -116,13 +111,13 @@ s390x-mcp/
 
 ### 1. knowledge_base_search
 
-Search across all embedded content: wiki build guides, s390x-oss-kb fix entries, and build scripts.
+Search across all embedded content: wiki build guides and build scripts.
 
 **Inputs:**
 - `query: str` -- Natural language search query
 - `invocation_reason: Optional[str]` -- Why the model is calling this tool
 
-**Outputs:** List of ranked results, each with: `url`, `title`, `heading`, `snippet`, `doc_type` (Build Guide | Fix Entry | Build Script), `product`, `distance`, `score`
+**Outputs:** List of ranked results, each with: `url`, `title`, `heading`, `snippet`, `doc_type` (Build Guide | Build Script), `product`, `distance`, `score`
 
 **Search pipeline** (follows ARM's implementation):
 1. Dense search: encode query with SentenceTransformer(`all-MiniLM-L6-v2`), search USearch index (384-dim, L2sq metric)
@@ -130,7 +125,7 @@ Search across all embedded content: wiki build guides, s390x-oss-kb fix entries,
 3. Reciprocal Rank Fusion (RRF_K=60) to merge results
 4. Reranking with s390x-specific signals:
    - Text/title/heading overlap bonuses
-   - doc_type boost based on query intent (build intent -> Build Guide +0.30, fix intent -> Fix Entry +0.25)
+   - doc_type boost based on query intent (build/porting intent -> Build Guide +0.30, script intent -> Build Script +0.25)
    - Distro match bonus (+0.15 when query mentions specific distro)
    - Version recency bonus (+0.10 for matching version)
 
@@ -225,34 +220,28 @@ Container image remote inspection without pulling.
 
 ### Data Ingestion
 
-Three loaders produce a unified chunk format:
+Two loaders produce a unified chunk format:
 
-1. **`load_oss_kb.py`**: Read 127 fix JSONs from `s390x-oss-kb/fixes/`. Each fix becomes 1-2 chunks:
-   - Chunk A: `fix_summary` + `root_cause` + `category` (concise, good for matching queries)
-   - Chunk B: `fix_detail` + `diff` content (detailed, good for actionable answers)
-   - Metadata: `package`, `version`, `category`, `wiki_url`, `patch_url`, `upstream_status`
+1. **`fetch_wiki_pages.py`**: Shallow-clone `linux-on-ibm-z/docs.wiki.git`, read each `.md` file. Section-aware chunking preserves distro-specific code blocks with their surrounding context.
 
-2. **`fetch_wiki_pages.py`**: Shallow-clone `linux-on-ibm-z/docs.wiki.git`, read each `.md` file. Section-aware chunking preserves distro-specific code blocks with their surrounding context.
-
-3. **`fetch_build_scripts.py`**: Shallow-clone `linux-on-ibm-z/scripts`, walk `{package}/{version}/build_*.sh`. Chunk by function (prepare, configureAndInstall, runTest). Extract metadata: package name, version, supported distros.
+2. **`fetch_build_scripts.py`**: Shallow-clone `linux-on-ibm-z/scripts`, walk `{package}/{version}/build_*.sh`. Chunk by function (prepare, configureAndInstall, runTest). Extract metadata: package name, version, supported distros.
 
 ### Chunk Schema
 
 ```json
 {
   "uuid": "unique-id",
-  "chunk_uuid": "fix_cassandra-snappy-java-upgrade_A",
+  "chunk_uuid": "wiki_building-apache-cassandra_section3",
   "url": "https://github.com/linux-on-ibm-z/docs/wiki/Building-Apache-Cassandra",
   "original_text": "...",
-  "title": "Apache Cassandra s390x Fix: Upgrade snappy-java",
-  "heading": "Fix: snappy-java native library",
-  "heading_path": ["Apache Cassandra", "Fix: snappy-java"],
-  "doc_type": "Fix Entry",
+  "title": "Building Apache Cassandra",
+  "heading": "Step 3 - Build and install",
+  "heading_path": ["Apache Cassandra", "Step 3"],
+  "doc_type": "Build Guide",
   "product": "Apache Cassandra",
   "version": "5.0.6",
-  "category": "platform_assumption",
   "distros": ["RHEL 8.10", "Ubuntu 24.04"],
-  "keywords": "cassandra snappy java native s390x",
+  "keywords": "cassandra build s390x",
   "search_text": "..."
 }
 ```
@@ -262,7 +251,7 @@ Three loaders produce a unified chunk format:
 - Model: `all-MiniLM-L6-v2` (384-dim, same as ARM)
 - Index: USearch with L2sq metric, connectivity=16, expansion_add=128, expansion_search=64
 - Outputs: `metadata.json` (chunk metadata array) + `usearch_index.bin` (vector index)
-- Estimated chunk count: ~2,000-3,000 (127 fixes x2 + 117 wiki pages x5-10 sections + 74 scripts x3 functions)
+- Estimated chunk count: ~14,600 (117 wiki pages x ~10 sections + 74 scripts x ~10 versions x ~10 functions)
 
 ## Configuration
 

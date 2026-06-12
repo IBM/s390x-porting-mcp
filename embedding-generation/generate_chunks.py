@@ -13,7 +13,6 @@ sys.path.insert(0, os.path.dirname(__file__))
 from fetch_build_scripts import build_script_index
 from fetch_build_scripts import generate_chunks as gen_script_chunks
 from fetch_wiki_pages import generate_chunks as gen_wiki_chunks
-from load_oss_kb import generate_chunks as gen_oss_kb_chunks
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -21,7 +20,6 @@ logger = logging.getLogger(__name__)
 
 def main():
     parser = argparse.ArgumentParser(description="Generate chunks from all knowledge sources")
-    parser.add_argument("--oss-kb-dir", help="Path to s390x-oss-kb repo")
     parser.add_argument("--wiki-dir", help="Path to cloned docs.wiki.git")
     parser.add_argument("--scripts-dir", help="Path to cloned scripts repo")
     parser.add_argument("--output-dir", default="output", help="Output directory for chunk files")
@@ -31,14 +29,6 @@ def main():
     os.makedirs(args.output_dir, exist_ok=True)
 
     all_chunks = []
-
-    if args.oss_kb_dir:
-        fixes_dir = os.path.join(args.oss_kb_dir, "fixes")
-        packages_path = os.path.join(args.oss_kb_dir, "packages.json")
-        logger.info("Loading s390x-oss-kb from %s", args.oss_kb_dir)
-        kb_chunks = gen_oss_kb_chunks(fixes_dir, packages_path if os.path.exists(packages_path) else None)
-        all_chunks.extend(kb_chunks)
-        logger.info("  -> %d chunks from oss-kb", len(kb_chunks))
 
     if args.wiki_dir:
         logger.info("Loading wiki pages from %s", args.wiki_dir)

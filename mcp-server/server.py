@@ -16,9 +16,9 @@ mcp = FastMCP("s390x-mcp")
 @mcp.tool(
     description=(
         "IMPORTANT: IF A USER ASKS ABOUT BUILDING OR PORTING SOFTWARE TO S390X/IBM Z, "
-        "STRONGLY CONSIDER USING THIS TOOL. Searches a knowledge base of build guides, "
-        "porting fixes, and scripts for open-source software on s390x Linux (IBM Z). "
-        "Given a natural language query, returns matching build instructions, fix entries, "
+        "STRONGLY CONSIDER USING THIS TOOL. Searches a knowledge base of build guides "
+        "and scripts for open-source software on s390x Linux (IBM Z). "
+        "Given a natural language query, returns matching build instructions "
         "and scripts ranked by relevance. Covers 96+ software packages with multi-distro "
         "(RHEL, SLES, Ubuntu) build steps."
     )
