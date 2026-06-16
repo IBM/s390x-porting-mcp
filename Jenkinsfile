@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'oss-mcp' }
 
     parameters {
         string(name: 'DOCKER_REGISTRY', defaultValue: '', description: 'Docker registry URL (e.g., registry.example.com/s390x-mcp). Leave empty to skip push.')
