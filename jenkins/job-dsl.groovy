@@ -17,8 +17,8 @@
 //   - Uncomment the cron trigger for scheduled builds
 //   - Set DOCKER_REGISTRY default to your internal registry
 
-def REPO_URL        = 'git@github.ibm.com:loz-ai-lab/s390x-mcp.git'
-def CREDENTIALS_ID  = 'github-ibm-ssh'   // Change to your Jenkins credential ID
+def REPO_URL        = 'https://github.ibm.com/loz-ai-lab/s390x-mcp.git'
+def CREDENTIALS_ID  = 'loz-ai-lab-github-app-jenkins'
 def BRANCH          = 'main'
 
 pipelineJob('s390x-mcp-kb-update') {
