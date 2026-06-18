@@ -176,7 +176,7 @@ print('Quality gate passed.')
 
 wiki: ${WIKI_SHA}
 scripts: ${SCRIPTS_SHA}"
-                                git push https://\${GIT_USER}:\${GIT_TOKEN}@\$(git remote get-url origin | sed 's|https://||') ${branch}
+                                git push https://x-access-token:\${GIT_TOKEN}@\$(git remote get-url origin | sed 's|https://||') ${branch}
                             """
 
                             def apiBase = sh(
