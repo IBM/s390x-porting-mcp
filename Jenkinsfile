@@ -150,7 +150,7 @@ print('Quality gate passed.')
             }
         }
 
-        stage('Commit Data') {
+        stage('Create PR') {
             when { expression { env.SKIP_REBUILD != 'true' } }
             steps {
                 script {
@@ -165,16 +165,41 @@ print('Quality gate passed.')
                             usernameVariable: 'GIT_USER',
                             passwordVariable: 'GIT_TOKEN'
                         )]) {
-                            sh '''
+                            def timestamp = sh(script: 'date -u +%Y%m%d-%H%M%S', returnStdout: true).trim()
+                            def branch = "update/${timestamp}"
+                            sh """
                                 git config user.name "Jenkins CI"
                                 git config user.email "jenkins@ci.local"
+                                git checkout -b ${branch}
                                 git add mcp-server/data/metadata.json mcp-server/data/usearch_index.bin mcp-server/data/script_index.json
                                 git commit -m "Update knowledge base from upstream sources
 
 wiki: ${WIKI_SHA}
 scripts: ${SCRIPTS_SHA}"
-                                git push https://${GIT_USER}:${GIT_TOKEN}@$(git remote get-url origin | sed 's|https://||') HEAD:main
-                            '''
+                                git push https://\${GIT_USER}:\${GIT_TOKEN}@\$(git remote get-url origin | sed 's|https://||') ${branch}
+                            """
+
+                            def apiBase = sh(
+                                script: "git remote get-url origin | sed 's|https://\\([^/]*\\)/.*|https://\\1/api/v3|'",
+                                returnStdout: true
+                            ).trim()
+                            def repoPath = sh(
+                                script: "git remote get-url origin | sed 's|https://[^/]*/||; s|\\.git\$||'",
+                                returnStdout: true
+                            ).trim()
+
+                            sh """
+                                curl -sf -X POST \
+                                    -H "Authorization: token \${GIT_TOKEN}" \
+                                    -H "Content-Type: application/json" \
+                                    -d '{
+                                        "title": "Update knowledge base from upstream sources",
+                                        "head": "${branch}",
+                                        "base": "main",
+                                        "body": "Automated knowledge base update.\\n\\nwiki: ${WIKI_SHA}\\nscripts: ${SCRIPTS_SHA}"
+                                    }' \
+                                    "${apiBase}/repos/${repoPath}/pulls"
+                            """
                         }
                     } else {
                         echo 'Data files unchanged after regeneration. Skipping commit.'
