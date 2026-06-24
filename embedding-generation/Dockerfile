@@ -22,5 +22,6 @@ RUN mkdir -p /embedding-data
 
 ENTRYPOINT ["python3", "embedding-generation/generate_chunks.py"]
 
-FROM builder AS output
-RUN mkdir -p /embedding-data
+FROM scratch AS output
+COPY mcp-server/data/metadata.json /embedding-data/metadata.json
+COPY mcp-server/data/usearch_index.bin /embedding-data/usearch_index.bin
