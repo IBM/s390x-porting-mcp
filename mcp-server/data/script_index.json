@@ -975,6 +975,22 @@
           "ubuntu-24.04",
           "ubuntu-25.10"
         ]
+      },
+      "2.4.68": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheHttpServer/2.4.68/build_apachehttpserver.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles 15.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
       }
     }
   },
@@ -982,7 +998,7 @@
     "wiki_url": "",
     "versions": {
       "2.8.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/2.8.0/build_kafka_AdoptiumTemurin.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/2.8.0/build_kafka_IBMSemeru.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
@@ -998,7 +1014,7 @@
         ]
       },
       "3.0.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/3.0.0/build_kafka_AdoptiumTemurin.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/3.0.0/build_kafka_IBMSemeru.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
@@ -1014,7 +1030,7 @@
         ]
       },
       "3.1.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/3.1.0/build_kafka_AdoptiumTemurin.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/3.1.0/build_kafka_IBMSemeru.sh",
         "distros": [
           "RHEL 8.5",
           "Ubuntu 21.10",
@@ -3828,7 +3844,6 @@
           "rhel8",
           "rhel8.10",
           "rhel9.",
-          "rhel9.4",
           "rhel9.6",
           "rhel9.7",
           "sles15.7",
@@ -22307,14 +22322,6 @@
       "7.0.25": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.25/build_zabbixserver.sh",
         "distros": [
-          "rhel-10",
-          "rhel-10.0",
-          "rhel-10.1",
-          "rhel-8",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.6",
-          "rhel-9.7",
           "sles-15.7",
           "ubuntu-22.04",
           "ubuntu-24.04"
