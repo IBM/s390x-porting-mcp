@@ -5,7 +5,7 @@
       "args": [
         "run", "--rm", "-i",
         "-v", "${workspaceFolder}:/workspace",
-        "s390x-mcp:latest"
+        "quay.io/ibm/s390x-porting-mcp:latest"
       ]
     }
   }

@@ -2,9 +2,9 @@ pipeline {
     agent { label 'oss-mcp' }
 
     parameters {
-        string(name: 'DOCKER_REGISTRY', defaultValue: '', description: 'Docker registry URL (e.g., registry.example.com/s390x-mcp). Leave empty to skip push.')
+        string(name: 'DOCKER_REGISTRY', defaultValue: 'quay.io/ibm/s390x-porting-mcp', description: 'Docker registry URL. Leave empty to skip push.')
         string(name: 'GIT_CREDENTIALS_ID', defaultValue: 'loz-ai-lab-github-app-jenkins', description: 'Jenkins credentials ID for git push')
-        string(name: 'DOCKER_CREDENTIALS_ID', defaultValue: 'docker-credentials', description: 'Jenkins credentials ID for Docker registry')
+        string(name: 'DOCKER_CREDENTIALS_ID', defaultValue: 'quay-ibm-s390x-robot', description: 'Jenkins credentials ID for Quay.io registry')
         // Uncomment and set a cron expression to enable scheduled builds:
         // string(name: 'CRON_SCHEDULE', defaultValue: 'H 2 * * 0', description: 'Cron schedule (default: weekly Sunday ~2am)')
     }
