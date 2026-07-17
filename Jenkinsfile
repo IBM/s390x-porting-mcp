@@ -24,7 +24,7 @@ pipeline {
 
     options {
         timestamps()
-        timeout(time: 30, unit: 'MINUTES')
+        timeout(time: 60, unit: 'MINUTES')
         disableConcurrentBuilds()
     }
 
@@ -211,21 +211,30 @@ scripts: ${SCRIPTS_SHA}"
         stage('Docker Build & Push') {
             when { expression { env.SKIP_REBUILD != 'true' } }
             steps {
-                sh 'docker build -t s390x-mcp:embeddings-latest -f embedding-generation/Dockerfile .'
-                sh 'docker build -t s390x-mcp:latest -f mcp-server/Dockerfile .'
-
                 script {
                     if (params.DOCKER_REGISTRY) {
-                        def tag = "${params.DOCKER_REGISTRY}:latest"
+                        def registry = params.DOCKER_REGISTRY
+                        def embeddingsTag = "${registry}:embeddings-latest"
+                        def latestTag = "${registry}:latest"
+
                         withCredentials([usernamePassword(
                             credentialsId: params.DOCKER_CREDENTIALS_ID,
                             usernameVariable: 'DOCKER_USER',
                             passwordVariable: 'DOCKER_PASS'
                         )]) {
                             sh """
-                                echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin ${params.DOCKER_REGISTRY.split('/')[0]}
-                                docker tag s390x-mcp:latest ${tag}
-                                docker push ${tag}
+                                echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin ${registry.split('/')[0]}
+                                docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+                                docker buildx create --name multiarch --use 2>/dev/null || docker buildx use multiarch
+                                docker buildx build --platform linux/amd64,linux/arm64 \
+                                    -t ${embeddingsTag} \
+                                    -f embedding-generation/Dockerfile \
+                                    --push .
+                                docker buildx build --platform linux/amd64,linux/arm64 \
+                                    --build-arg EMBEDDINGS_IMAGE=${embeddingsTag} \
+                                    -t ${latestTag} \
+                                    -f mcp-server/Dockerfile \
+                                    --push .
                             """
                         }
                     } else {
