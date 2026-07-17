@@ -1493,6 +1493,13 @@
           "ubuntu-24.04",
           "ubuntu-25.10"
         ]
+      },
+      "9.1.0": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Bazel/9.1.0/build_bazel.sh",
+        "distros": [
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -2131,6 +2138,18 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "9.4.3": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Beats/9.4.3/build_beats.sh",
+        "distros": [
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -2307,6 +2326,19 @@
           "ubuntu-22.04",
           "ubuntu-22.10"
         ]
+      }
+    }
+  },
+  "CI": {
+    "wiki_url": "",
+    "versions": {
+      "Envoy": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/CI/Envoy/build_envoy.sh",
+        "distros": []
+      },
+      "Tensorflow": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/CI/Tensorflow/build_tensorflow.sh",
+        "distros": []
       }
     }
   },
@@ -3563,6 +3595,21 @@
           "ubuntu-18.04",
           "ubuntu-20.04",
           "ubuntu-21.04"
+        ]
+      },
+      "2.0.1": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Consul/2.0.1/build_consul.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
         ]
       }
     }
@@ -4925,6 +4972,25 @@
           "ubuntu-25.10",
           "ubuntu-2510."
         ]
+      },
+      "1.37.1": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Envoy/1.37.1/build_envoy.sh",
+        "distros": [
+          "SLES 16",
+          "Ubuntu 25.10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10",
+          "ubuntu-2510."
+        ]
       }
     }
   },
@@ -5688,6 +5754,42 @@
           "ubuntu-22.04",
           "ubuntu-24.04",
           "ubuntu-25.10"
+        ]
+      },
+      "29.0.2": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Erlang/29.0.2/build_erlang.sh",
+        "distros": [
+          "Ubuntu 25.",
+          "rhel 10.",
+          "rhel 8.10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
+      "29.0.3": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Erlang/29.0.3/build_erlang.sh",
+        "distros": [
+          "rhel 10.",
+          "rhel 8.10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
         ]
       }
     }
@@ -6681,6 +6783,22 @@
           "ubuntu-25.10"
         ]
       },
+      "1.19.3": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Fluentd/1.19.3/build_fluentd.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
       "1.3.3": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Fluentd/1.3.3/build_fluentd.sh",
         "distros": [
@@ -7566,874 +7684,6 @@
           "ubuntu-23.04",
           "ubuntu-23.10",
           "ubuntu-24.04"
-        ]
-      }
-    }
-  },
-  "Grafana": {
-    "wiki_url": "",
-    "versions": {
-      "10.0.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/10.0.1/build_grafana.sh",
-        "distros": [
-          "rhel-8.6",
-          "rhel-8.8",
-          "rhel-9.0",
-          "rhel-9.2",
-          "sles-15.4",
-          "sles-15.5",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-23.04"
-        ]
-      },
-      "10.0.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/10.0.3/build_grafana.sh",
-        "distros": [
-          "Rhel 7.",
-          "Sles 12.5",
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.6",
-          "rhel-8.8",
-          "rhel-9.0",
-          "rhel-9.2",
-          "sles-12.5",
-          "sles-15.4",
-          "sles-15.5",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-23.04"
-        ]
-      },
-      "10.1.4": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/10.1.4/build_grafana.sh",
-        "distros": [
-          "Rhel 7.",
-          "Sles 12.5",
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.6",
-          "rhel-8.8",
-          "rhel-9.0",
-          "rhel-9.2",
-          "sles-12.5",
-          "sles-15.4",
-          "sles-15.5",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-23.04"
-        ]
-      },
-      "10.2.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/10.2.2/build_grafana.sh",
-        "distros": [
-          "Rhel 7.",
-          "Sles 12.5",
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.6",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.0",
-          "rhel-9.2",
-          "sles-12.5",
-          "sles-15.5",
-          "ubuntu-20.04",
-          "ubuntu-22.04"
-        ]
-      },
-      "10.3.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/10.3.3/build_grafana.sh",
-        "distros": [
-          "rhel-8.6",
-          "rhel-8.8",
-          "rhel-8.9",
-          "rhel-9",
-          "rhel-9.0",
-          "rhel-9.2",
-          "rhel-9.3",
-          "sles-15.5",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-23.10"
-        ]
-      },
-      "10.4.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/10.4.2/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-8.9",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.3",
-          "rhel-9.4",
-          "sles-15.5",
-          "sles-15.6",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-24.04"
-        ]
-      },
-      "11.1.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/11.1.0/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.4",
-          "sles-15.5",
-          "sles-15.6",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-24.04"
-        ]
-      },
-      "11.2.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/11.2.0/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.4",
-          "sles-15.5",
-          "sles-15.6",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-24.04"
-        ]
-      },
-      "11.2.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/11.2.2/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.4",
-          "sles-15.5",
-          "sles-15.6",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-24.04"
-        ]
-      },
-      "11.3.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/11.3.0/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.4",
-          "sles-15.5",
-          "sles-15.6",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-24.10"
-        ]
-      },
-      "11.4.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/11.4.0/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.4",
-          "rhel-9.5",
-          "sles-15.6",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-24.10"
-        ]
-      },
-      "11.5.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/11.5.1/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.4",
-          "rhel-9.5",
-          "sles-15.6",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-24.10"
-        ]
-      },
-      "11.5.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/11.5.2/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.4",
-          "rhel-9.5",
-          "sles-15.6",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-24.10"
-        ]
-      },
-      "11.6.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/11.6.0/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-8.8",
-          "rhel-9",
-          "rhel-9.2",
-          "rhel-9.4",
-          "rhel-9.5",
-          "sles-15.6",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-24.10"
-        ]
-      },
-      "12.0.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.0.0/build_grafana.sh",
-        "distros": [
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.5",
-          "sles-15.6",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-24.10",
-          "ubuntu-25.04"
-        ]
-      },
-      "12.0.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.0.2/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.5",
-          "rhel-9.6",
-          "sles-15.6",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.04"
-        ]
-      },
-      "12.1.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.1.0/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.6",
-          "sles-15.6",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.04"
-        ]
-      },
-      "12.2.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.2.0/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.6",
-          "sles-15.6",
-          "sles-15.7",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.04"
-        ]
-      },
-      "12.2.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.2.1/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.6",
-          "sles-15.6",
-          "sles-15.7",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.04"
-        ]
-      },
-      "12.3.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.3.0/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.6",
-          "sles-15.6",
-          "sles-15.7",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.04",
-          "ubuntu-25.10"
-        ]
-      },
-      "12.3.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.3.1/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-10.1",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.6",
-          "rhel-9.7",
-          "sles-15.7",
-          "sles-16.0",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
-        ]
-      },
-      "12.3.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.3.2/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-10.1",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.6",
-          "rhel-9.7",
-          "sles-15.7",
-          "sles-16.0",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
-        ]
-      },
-      "12.4.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.4.0/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-10.1",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.6",
-          "rhel-9.7",
-          "sles-15.7",
-          "sles-16.0",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
-        ]
-      },
-      "12.4.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/12.4.2/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-10.1",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.4",
-          "rhel-9.6",
-          "rhel-9.7",
-          "sles-15.7",
-          "sles-16.0",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
-        ]
-      },
-      "13.0.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/13.0.1/build_grafana.sh",
-        "distros": [
-          "rhel-10.0",
-          "rhel-10.1",
-          "rhel-8.10",
-          "rhel-9",
-          "rhel-9.6",
-          "rhel-9.7",
-          "sles-15.7",
-          "sles-16.0",
-          "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
-        ]
-      },
-      "5.4.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/5.4.3/build_grafana.sh",
-        "distros": [
-          "RHEL 6.10",
-          "rhel-7.4",
-          "rhel-7.5",
-          "rhel-7.6",
-          "sles-12.3",
-          "sles-15",
-          "ubuntu-16.04",
-          "ubuntu-18.04"
-        ]
-      },
-      "6.1.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.1.0/build_grafana.sh",
-        "distros": [
-          "RHEL 6.10",
-          "rhel-7.4",
-          "rhel-7.5",
-          "rhel-7.6",
-          "sles-12.4",
-          "sles-15",
-          "ubuntu-16.04",
-          "ubuntu-18.04"
-        ]
-      },
-      "6.2.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.2.1/build_grafana.sh",
-        "distros": [
-          "RHEL 6.10",
-          "rhel-7.4",
-          "rhel-7.5",
-          "rhel-7.6",
-          "sles-12.4",
-          "sles-15",
-          "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu-19.04"
-        ]
-      },
-      "6.2.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.2.2/build_grafana.sh",
-        "distros": [
-          "RHEL 6.10",
-          "rhel-7.4",
-          "rhel-7.5",
-          "rhel-7.6",
-          "sles-12.4",
-          "sles-15",
-          "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu-19.04"
-        ]
-      },
-      "6.2.5": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.2.5/build_grafana.sh",
-        "distros": [
-          "RHEL 6.10",
-          "rhel-7.4",
-          "rhel-7.5",
-          "rhel-7.6",
-          "sles-12.4",
-          "sles-15",
-          "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu-19.04"
-        ]
-      },
-      "6.3.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.3.3/build_grafana.sh",
-        "distros": [
-          "RHEL 6.10",
-          "rhel-7.5",
-          "rhel-7.6",
-          "rhel-7.7",
-          "sles-12.4",
-          "sles-15",
-          "sles-15.1",
-          "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu-19.04"
-        ]
-      },
-      "6.4.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.4.2/build_grafana.sh",
-        "distros": [
-          "rhel-7.5",
-          "rhel-7.6",
-          "rhel-7.7",
-          "sles-12.4",
-          "sles-15.1",
-          "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu-19.10"
-        ]
-      },
-      "6.5.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.5.2/build_grafana.sh",
-        "distros": [
-          "rhel 7.",
-          "rhel-7.5",
-          "rhel-7.6",
-          "rhel-7.7",
-          "rhel-8.0",
-          "sles-12.4",
-          "sles-15.1",
-          "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu-19.10"
-        ]
-      },
-      "6.7.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.7.1/build_grafana.sh",
-        "distros": [
-          "rhel 7.",
-          "rhel-7.5",
-          "rhel-7.6",
-          "rhel-7.7",
-          "rhel-8.0",
-          "sles-12.4",
-          "sles-15.1",
-          "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu-19.10"
-        ]
-      },
-      "6.7.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.7.2/build_grafana.sh",
-        "distros": [
-          "RHEL7",
-          "rhel-7.6",
-          "rhel-7.7",
-          "rhel-8.0",
-          "sles-12.4",
-          "sles-15.1",
-          "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu-19.10"
-        ]
-      },
-      "6.7.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/6.7.3/build_grafana.sh",
-        "distros": [
-          "RHEL7",
-          "rhel-7.6",
-          "rhel-7.7",
-          "sles-12.4",
-          "sles-15.1",
-          "ubuntu-16.04",
-          "ubuntu-18.04"
-        ]
-      },
-      "7.0.5": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/7.0.5/build_grafana.sh",
-        "distros": [
-          "RHEL 8",
-          "RHEL7",
-          "rhel-7.6",
-          "rhel-7.7",
-          "rhel-7.8",
-          "rhel-8.",
-          "rhel-8.1",
-          "rhel-8.2",
-          "sles-12.5",
-          "sles-15.1",
-          "ubuntu-18.04",
-          "ubuntu-20.04"
-        ]
-      },
-      "7.3.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/7.3.1/build_grafana.sh",
-        "distros": [
-          "RHEL 8",
-          "RHEL7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.",
-          "rhel-8.1",
-          "rhel-8.2",
-          "rhel-8.3",
-          "sles-12.5",
-          "sles-15.1",
-          "sles-15.2",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-20.10"
-        ]
-      },
-      "7.3.5": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/7.3.5/build_grafana.sh",
-        "distros": [
-          "RHEL 8",
-          "RHEL7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.",
-          "rhel-8.1",
-          "rhel-8.2",
-          "rhel-8.3",
-          "sles-12.5",
-          "sles-15.1",
-          "sles-15.2",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-20.10"
-        ]
-      },
-      "7.4.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/7.4.1/build_grafana.sh",
-        "distros": [
-          "RHEL 8",
-          "RHEL7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.",
-          "rhel-8.1",
-          "rhel-8.2",
-          "rhel-8.3",
-          "sles-12.5",
-          "sles-15.2",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-20.10"
-        ]
-      },
-      "7.4.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/7.4.3/build_grafana.sh",
-        "distros": [
-          "RHEL7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.1",
-          "rhel-8.2",
-          "rhel-8.3",
-          "sles-12.5",
-          "sles-15.2",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-20.10"
-        ]
-      },
-      "7.5.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/7.5.3/build_grafana.sh",
-        "distros": [
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.1",
-          "rhel-8.2",
-          "rhel-8.3",
-          "sles-12.5",
-          "sles-15.2",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-20.10"
-        ]
-      },
-      "7.5.7": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/7.5.7/build_grafana.sh",
-        "distros": [
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.1",
-          "rhel-8.2",
-          "rhel-8.3",
-          "sles-12.5",
-          "sles-15.2",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-21.04"
-        ]
-      },
-      "8.0.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/8.0.3/build_grafana.sh",
-        "distros": [
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.2",
-          "rhel-8.3",
-          "rhel-8.4",
-          "sles-12.5",
-          "sles-15.2",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-21.04"
-        ]
-      },
-      "8.1.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/8.1.2/build_grafana.sh",
-        "distros": [
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.2",
-          "rhel-8.3",
-          "rhel-8.4",
-          "sles-12.5",
-          "sles-15.2",
-          "sles-15.3",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-21.04"
-        ]
-      },
-      "8.1.4": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/8.1.4/build_grafana.sh",
-        "distros": [
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.2",
-          "rhel-8.3",
-          "rhel-8.4",
-          "sles-12.5",
-          "sles-15.2",
-          "sles-15.3",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-21.04"
-        ]
-      },
-      "8.2.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/8.2.3/build_grafana.sh",
-        "distros": [
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.4",
-          "rhel-8.5",
-          "rhel-8.6",
-          "sles-12.5",
-          "sles-15.3",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-22.04"
-        ]
-      },
-      "9.0.5": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/9.0.5/build_grafana.sh",
-        "distros": [
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.4",
-          "rhel-8.6",
-          "rhel-9.0",
-          "sles-12.5",
-          "sles-15.3",
-          "sles-15.4",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-22.04"
-        ]
-      },
-      "9.1.7": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/9.1.7/build_grafana.sh",
-        "distros": [
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.4",
-          "rhel-8.6",
-          "rhel-9.0",
-          "sles-12.5",
-          "sles-15.3",
-          "sles-15.4",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-22.04"
-        ]
-      },
-      "9.2.5": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/9.2.5/build_grafana.sh",
-        "distros": [
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.4",
-          "rhel-8.6",
-          "rhel-8.7",
-          "rhel-9.0",
-          "rhel-9.1",
-          "sles-12.5",
-          "sles-15.3",
-          "sles-15.4",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-22.10"
-        ]
-      },
-      "9.3.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/9.3.2/build_grafana.sh",
-        "distros": [
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.4",
-          "rhel-8.6",
-          "rhel-8.7",
-          "rhel-9.0",
-          "rhel-9.1",
-          "sles-12.5",
-          "sles-15.3",
-          "sles-15.4",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-22.10"
-        ]
-      },
-      "9.3.6": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/9.3.6/build_grafana.sh",
-        "distros": [
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.4",
-          "rhel-8.6",
-          "rhel-8.7",
-          "rhel-9.0",
-          "rhel-9.1",
-          "sles-12.5",
-          "sles-15.4",
-          "ubuntu-18.04",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-22.10"
-        ]
-      },
-      "9.4.7": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/9.4.7/build_grafana.sh",
-        "distros": [
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.6",
-          "rhel-8.7",
-          "rhel-9.0",
-          "rhel-9.1",
-          "sles-12.5",
-          "sles-15.4",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-22.10",
-          "ubuntu-23.04"
-        ]
-      },
-      "9.5.1": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Grafana/9.5.1/build_grafana.sh",
-        "distros": [
-          "rhel-7",
-          "rhel-7.8",
-          "rhel-7.9",
-          "rhel-8.6",
-          "rhel-8.7",
-          "rhel-9.0",
-          "rhel-9.1",
-          "sles-12.5",
-          "sles-15.4",
-          "ubuntu-20.04",
-          "ubuntu-22.04",
-          "ubuntu-22.10",
-          "ubuntu-23.04"
         ]
       }
     }
@@ -9688,14 +8938,14 @@
         "distros": [
           "rhel-10.0",
           "rhel-10.1",
+          "rhel-10.2",
           "rhel-8.10",
           "rhel-9.6",
           "rhel-9.7",
+          "rhel-9.8",
           "sles-15.7",
-          "sles-16.0",
           "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
+          "ubuntu-24.04"
         ]
       }
     }
@@ -10123,6 +9373,22 @@
           "sles-15.5",
           "sles-15.6",
           "ubuntu-20.04",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "3.10.0": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/InfluxDB/3.10.0/build_influxdb.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
@@ -13200,6 +12466,12 @@
           "sles-15.7"
         ]
       },
+      "8.0.46": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/MySQL/8.0.46/build_mysql.sh",
+        "distros": [
+          "sles-15.7"
+        ]
+      },
       "8.1.0": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/MySQL/8.1.0/build_mysql.sh",
         "distros": [
@@ -13332,6 +12604,19 @@
           "ubuntu-24.04"
         ]
       },
+      "8.4.9": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/MySQL/8.4.9/build_mysql.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.4",
+          "rhel-9.6",
+          "rhel-9.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
       "9.0.1": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/MySQL/9.0.1/build_mysql.sh",
         "distros": [
@@ -13419,6 +12704,20 @@
           "rhel-8.10",
           "rhel-9",
           "rhel-9.4",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "9.7.0": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/MySQL/9.7.0/build_mysql.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9",
           "rhel-9.6",
           "rhel-9.7",
           "sles-15.7",
@@ -13642,6 +12941,23 @@
       },
       "1.30.0": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/NGINX/1.30.0/build_nginx.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "suse.",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
+      "1.30.3": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/NGINX/1.30.3/build_nginx.sh",
         "distros": [
           "rhel-10.0",
           "rhel-10.1",
@@ -14245,6 +13561,33 @@
           "ubuntu-25.10"
         ]
       },
+      "1.17.1": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/OPA/1.17.1/build_opa.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
+      "1.18.2": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/OPA/1.18.2/build_opa.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
       "1.2.0": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/OPA/1.2.0/build_opa.sh",
         "distros": [
@@ -14618,6 +13961,22 @@
           "ubuntu-22.04",
           "ubuntu-24.04",
           "ubuntu-25.10"
+        ]
+      },
+      "1.31.1.1": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/OpenResty/1.31.1.1/build_openresty.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
         ]
       }
     }
@@ -15940,6 +15299,21 @@
           "ubuntu-25.10"
         ]
       },
+      "16.14": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/PostgreSQL/16.14/build_postgresql.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
       "16.2": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/PostgreSQL/16.2/build_postgresql.sh",
         "distros": [
@@ -16016,6 +15390,21 @@
           "sles-15.5",
           "sles-15.6",
           "ubuntu-24.10"
+        ]
+      },
+      "17.10": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/PostgreSQL/17.10/build_postgresql.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
         ]
       },
       "17.2": {
@@ -17169,6 +16558,21 @@
           "ubuntu-25.10"
         ]
       },
+      "3.13.14": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Python3/3.13.14/build_python3.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
       "3.13.2": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Python3/3.13.2/build_python3.sh",
         "distros": [
@@ -17322,6 +16726,21 @@
       },
       "3.14.5": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Python3/3.14.5/build_python3.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
+      "3.14.6": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Python3/3.14.6/build_python3.sh",
         "distros": [
           "rhel-10.0",
           "rhel-10.1",
@@ -18692,6 +18111,22 @@
           "ubuntu-24.04",
           "ubuntu-25.10"
         ]
+      },
+      "4.2.8": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/RabbitMQ/4.2.8/build_rabbitmq.sh",
+        "distros": [
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
       }
     }
   },
@@ -19423,14 +18858,15 @@
         "distros": [
           "rhel-10.0",
           "rhel-10.1",
+          "rhel-10.2",
           "rhel-8.10",
           "rhel-9.6",
           "rhel-9.7",
+          "rhel-9.8",
           "sles-15.7",
           "sles-16.0",
           "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
+          "ubuntu-24.04"
         ]
       }
     }
@@ -20933,6 +20369,23 @@
           "ubuntu-25.10"
         ]
       },
+      "1.15.1": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Spire/1.15.1/build_spire.sh",
+        "distros": [
+          "rhel-10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
       "1.8.5": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Spire/1.8.5/build_spire.sh",
         "distros": [
@@ -21709,6 +21162,21 @@
           "ubuntu-25.10"
         ]
       },
+      "1.3.12": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/XMLSec/1.3.12/build_xmlsec.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
       "1.3.2": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/XMLSec/1.3.2/build_xmlsec.sh",
         "distros": [
@@ -22327,6 +21795,21 @@
           "ubuntu-24.04"
         ]
       },
+      "7.0.27": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.27/build_zabbixserver.sh",
+        "distros": [
+          "rhel-10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
       "7.0.3": {
         "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.3/build_zabbixserver.sh",
         "distros": [
@@ -22674,6 +22157,22 @@
           "ubuntu-22.04",
           "ubuntu-24.04",
           "ubuntu-25.10"
+        ]
+      },
+      "0.60.3": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/cAdvisor/0.60.3/build_cadvisor.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
         ]
       }
     }
@@ -23759,6 +23258,41 @@
           "ubuntu-24.04",
           "ubuntu-25.10"
         ]
+      },
+      "2.0.79": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/netty-tcnative/2.0.79/build_netty.sh",
+        "distros": [
+          "rhel-10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
+      "2.0.80": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/netty-tcnative/2.0.80/build_netty.sh",
+        "distros": [
+          "rhel-10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -23826,6 +23360,37 @@
           "ubuntu-22.04",
           "ubuntu-24.04",
           "ubuntu-25.10"
+        ]
+      },
+      "0.8.3": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/pgvector/0.8.3/build_pgvector.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu-25.10"
+        ]
+      },
+      "0.8.4": {
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/pgvector/0.8.4/build_pgvector.sh",
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
         ]
       }
     }
