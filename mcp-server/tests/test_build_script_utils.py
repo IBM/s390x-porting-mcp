@@ -141,12 +141,10 @@ class TestFindAndReturnScript:
         assert "available_versions" in result
 
     @patch("utils.build_script_utils._load_script_index", return_value=SAMPLE_INDEX)
-    def test_not_found_with_kb_fallback(self, _):
-        result = find_and_return_script("nonexistent")
-        assert result["status"] in ("not_found", "not_found_in_scripts")
-
-    @patch("utils.kb_search_utils.search_knowledge_base", side_effect=Exception("no kb"))
-    @patch("utils.build_script_utils._load_script_index", return_value=SAMPLE_INDEX)
-    def test_not_found_no_kb(self, *_):
+    def test_not_found_suggests_porting(self, _):
         result = find_and_return_script("nonexistent")
         assert result["status"] == "not_found"
+        assert "suggestion" in result
+        assert "port_analysis" in result["suggestion"]
+        assert "contact" in result
+        assert "community.ibm.com/zsystems/oss" in result["contact"]

@@ -4,7 +4,7 @@ from typing import Optional
 
 from fastmcp import FastMCP
 
-from utils.config import LOG_LEVEL
+from utils.config import KB_PACKAGE_COUNT, LOG_LEVEL, SCRIPT_PACKAGE_COUNT
 from utils.error_handling import format_tool_error
 from utils.invocation_logger import log_invocation_reason
 
@@ -20,7 +20,7 @@ mcp = FastMCP("s390x-mcp")
         "STRONGLY CONSIDER USING THIS TOOL. Searches a knowledge base of build guides "
         "and scripts for open-source software on s390x Linux (IBM Z). "
         "Given a natural language query, returns matching build instructions "
-        "and scripts ranked by relevance. Covers 96+ software packages with multi-distro "
+        f"and scripts ranked by relevance. Covers {KB_PACKAGE_COUNT}+ software packages with multi-distro "
         "(RHEL, SLES, Ubuntu) build steps."
     )
 )
@@ -39,10 +39,10 @@ def knowledge_base_search(
 
 @mcp.tool(
     description=(
-        "Generate or retrieve a build script for specific software on s390x Linux. "
-        "Searches existing build scripts from the linux-on-ibm-z/scripts repository, "
-        "covering 74+ software packages with version-specific build scripts for "
-        "RHEL, SLES, and Ubuntu."
+        "Retrieve an existing build script for software already ported to s390x Linux. "
+        f"Searches the linux-on-ibm-z/scripts repository index, covering {SCRIPT_PACKAGE_COUNT}+ software "
+        "packages with version-specific build scripts for RHEL, SLES, and Ubuntu. "
+        "For packages not yet ported, suggests porting analysis and how to request help."
     )
 )
 def build_script_generate(

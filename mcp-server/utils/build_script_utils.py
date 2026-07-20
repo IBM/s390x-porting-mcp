@@ -88,22 +88,23 @@ def find_and_return_script(
 ) -> dict:
     match = _find_package(software)
     if match is None:
-        try:
-            from utils.kb_search_utils import search_knowledge_base
-            kb_results = search_knowledge_base(f"build {software} s390x", k=3)
-            if kb_results and isinstance(kb_results, list) and len(kb_results) > 0:
-                return {
-                    "status": "not_found_in_scripts",
-                    "message": f"No build script found for '{software}' in the scripts repository. "
-                               f"Found related build guides in the knowledge base.",
-                    "related_guides": kb_results,
-                }
-        except Exception:
-            logger.debug("KB search fallback failed for '%s'", software, exc_info=True)
-
         return {
             "status": "not_found",
-            "message": f"No build script or guide found for '{software}'.",
+            "message": (
+                f"No existing build script was found for '{software}' in the "
+                f"linux-on-ibm-z/scripts repository. This package has not been "
+                f"ported to s390x yet."
+            ),
+            "suggestion": (
+                "You can use the 'port_analysis' tool to perform a porting "
+                "analysis on your source code. It will scan for endian issues, "
+                "architecture compatibility, and provide a portability assessment."
+            ),
+            "contact": (
+                "For additional porting assistance, you can submit a new port "
+                "request by following the instructions at "
+                "https://community.ibm.com/zsystems/oss/."
+            ),
         }
 
     pkg_name, pkg_data = match
