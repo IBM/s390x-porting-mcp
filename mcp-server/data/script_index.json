@@ -998,7 +998,7 @@
     "wiki_url": "",
     "versions": {
       "2.8.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/2.8.0/build_kafka_IBMSemeru.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/2.8.0/build_kafka_AdoptiumTemurin.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
@@ -1014,7 +1014,7 @@
         ]
       },
       "3.0.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/3.0.0/build_kafka_IBMSemeru.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/3.0.0/build_kafka_AdoptiumTemurin.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
@@ -1030,7 +1030,7 @@
         ]
       },
       "3.1.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/3.1.0/build_kafka_IBMSemeru.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheKafka/3.1.0/build_kafka_AdoptiumTemurin.sh",
         "distros": [
           "RHEL 8.5",
           "Ubuntu 21.10",
@@ -21313,102 +21313,69 @@
     "wiki_url": "",
     "versions": {
       "4.0.5": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/4.0.5/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/4.0.5/build_zabbixagent.sh",
         "distros": [
           "RHEL 6.10",
-          "rhel 6.10",
           "rhel-6.",
           "rhel-7.4",
           "rhel-7.5",
           "rhel-7.6",
-          "rhel6",
-          "rhel7",
-          "rhel7.",
           "sles-12.3",
           "sles-15",
-          "sles12",
-          "sles15",
           "ubuntu-16.04",
-          "ubuntu-18.04",
-          "ubuntu16",
-          "ubuntu18"
+          "ubuntu-18.04"
         ]
       },
       "4.2.0": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/4.2.0/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/4.2.0/build_zabbixagent.sh",
         "distros": [
           "RHEL 6.10",
-          "rhel 6.10",
           "rhel-6.",
           "rhel-7.4",
           "rhel-7.5",
           "rhel-7.6",
-          "rhel6",
-          "rhel7",
-          "rhel7.",
           "sles-12.4",
           "sles-15",
-          "sles12",
-          "sles15",
           "ubuntu-16.04",
           "ubuntu-18.04",
-          "ubuntu-19.04",
-          "ubuntu16",
-          "ubuntu18"
+          "ubuntu-19.04"
         ]
       },
       "4.2.2": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/4.2.2/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/4.2.2/build_zabbixagent.sh",
         "distros": [
           "RHEL 6.10",
-          "rhel 6.10",
           "rhel-6.",
           "rhel-7.4",
           "rhel-7.5",
           "rhel-7.6",
-          "rhel6",
-          "rhel7",
-          "rhel7.",
           "sles-12.4",
           "sles-15",
-          "sles12",
-          "sles15",
           "ubuntu-16.04",
           "ubuntu-18.04",
-          "ubuntu-19.04",
-          "ubuntu16",
-          "ubuntu18"
+          "ubuntu-19.04"
         ]
       },
       "4.2.5": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/4.2.5/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/4.2.5/build_zabbixagent.sh",
         "distros": [
           "RHEL 6.10",
-          "rhel 6.10",
           "rhel-6.",
           "rhel-7.5",
           "rhel-7.6",
-          "rhel6",
-          "rhel7",
-          "rhel7.",
           "sles-12.4",
           "sles-15",
           "sles-15.1",
-          "sles12",
-          "sles15",
           "ubuntu-16.04",
           "ubuntu-18.04",
-          "ubuntu-19.04",
-          "ubuntu16",
-          "ubuntu18"
+          "ubuntu-19.04"
         ]
       },
       "5.0.15": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.0.15/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.0.15/build_zabbixagent.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.2",
           "rhel-8.3",
           "rhel-8.4",
@@ -21421,11 +21388,10 @@
         ]
       },
       "5.0.17": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.0.17/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.0.17/build_zabbixagent.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.2",
           "rhel-8.4",
           "sles-12.5",
@@ -21438,11 +21404,10 @@
         ]
       },
       "5.0.19": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.0.19/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.0.19/build_zabbixagent.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.2",
           "rhel-8.4",
           "rhel-8.5",
@@ -21455,11 +21420,10 @@
         ]
       },
       "5.0.20": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.0.20/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.0.20/build_zabbixagent.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.4",
           "rhel-8.5",
           "sles-12.5",
@@ -21469,11 +21433,10 @@
         ]
       },
       "5.2.6": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.2.6/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/5.2.6/build_zabbixagent.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.2",
           "rhel-8.3",
           "rhel-8.4",
@@ -21486,14 +21449,12 @@
         ]
       },
       "6.0.10": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.10/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.10/build_zabbixagent.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.4",
           "rhel-8.6",
-          "rhel-9",
           "rhel-9.0",
           "sles-12.5",
           "sles-15.3",
@@ -21504,16 +21465,13 @@
         ]
       },
       "6.0.13": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.13/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.13/build_zabbixagent.sh",
         "distros": [
-          "rhel-7.",
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.4",
           "rhel-8.6",
           "rhel-8.7",
-          "rhel-9",
           "rhel-9.0",
           "rhel-9.1",
           "sles-12.5",
@@ -21525,15 +21483,12 @@
         ]
       },
       "6.0.17": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.17/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.17/build_zabbixagent.sh",
         "distros": [
-          "rhel-7.",
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.6",
           "rhel-8.7",
-          "rhel-9",
           "rhel-9.0",
           "rhel-9.1",
           "sles-12.5",
@@ -21545,13 +21500,10 @@
         ]
       },
       "6.0.19": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.19/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.19/build_zabbixagent.sh",
         "distros": [
-          "rhel-7",
-          "rhel-7.",
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.6",
           "rhel-8.8",
           "rhel-9.0",
@@ -21565,13 +21517,10 @@
         ]
       },
       "6.0.22": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.22/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.22/build_zabbixagent.sh",
         "distros": [
-          "rhel-7",
-          "rhel-7.",
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.6",
           "rhel-8.8",
           "rhel-9.0",
@@ -21586,10 +21535,8 @@
         ]
       },
       "6.0.25": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.25/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.25/build_zabbixagent.sh",
         "distros": [
-          "rhel-7",
-          "rhel-7.",
           "rhel-7.8",
           "rhel-7.9",
           "sles-12.5",
@@ -21600,10 +21547,8 @@
         ]
       },
       "6.0.29": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.29/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.29/build_zabbixagent.sh",
         "distros": [
-          "rhel-7",
-          "rhel-7.",
           "rhel-7.8",
           "rhel-7.9",
           "sles-12.5",
@@ -21615,9 +21560,8 @@
         ]
       },
       "6.0.31": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.31/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.31/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-8.8",
           "rhel-9.2",
@@ -21630,14 +21574,12 @@
         ]
       },
       "6.0.7": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.7/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/6.0.7/build_zabbixagent.sh",
         "distros": [
           "rhel-7.8",
           "rhel-7.9",
-          "rhel-8",
           "rhel-8.4",
           "rhel-8.6",
-          "rhel-9",
           "rhel-9.0",
           "sles-12.5",
           "sles-15.3",
@@ -21648,9 +21590,8 @@
         ]
       },
       "7.0.10": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.10/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.10/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-8.8",
           "rhel-9.2",
@@ -21664,9 +21605,8 @@
         ]
       },
       "7.0.12": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.12/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.12/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-8.8",
           "rhel-9.2",
@@ -21679,9 +21619,8 @@
         ]
       },
       "7.0.13": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.13/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.13/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-9.4",
           "rhel-9.5",
@@ -21693,9 +21632,8 @@
         ]
       },
       "7.0.16": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.16/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.16/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-9.4",
           "rhel-9.6",
@@ -21706,9 +21644,8 @@
         ]
       },
       "7.0.18": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.18/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.18/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-9.4",
           "rhel-9.6",
@@ -21718,10 +21655,9 @@
         ]
       },
       "7.0.19": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.19/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.19/build_zabbixagent.sh",
         "distros": [
           "rhel-10.0",
-          "rhel-8",
           "rhel-8.10",
           "rhel-9.4",
           "rhel-9.6",
@@ -21732,10 +21668,9 @@
         ]
       },
       "7.0.21": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.21/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.21/build_zabbixagent.sh",
         "distros": [
           "rhel-10.0",
-          "rhel-8",
           "rhel-8.10",
           "rhel-9.4",
           "rhel-9.6",
@@ -21746,7 +21681,7 @@
         ]
       },
       "7.0.22": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.22/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.22/build_zabbixagent.sh",
         "distros": [
           "sles-15.7",
           "ubuntu-22.04",
@@ -21754,14 +21689,11 @@
         ]
       },
       "7.0.23": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.23/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.23/build_zabbixagent.sh",
         "distros": [
-          "rhel-10",
           "rhel-10.0",
           "rhel-10.1",
-          "rhel-8",
           "rhel-8.10",
-          "rhel-9",
           "rhel-9.4",
           "rhel-9.6",
           "rhel-9.7",
@@ -21771,14 +21703,11 @@
         ]
       },
       "7.0.24": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.24/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.24/build_zabbixagent.sh",
         "distros": [
-          "rhel-10",
           "rhel-10.0",
           "rhel-10.1",
-          "rhel-8",
           "rhel-8.10",
-          "rhel-9",
           "rhel-9.4",
           "rhel-9.6",
           "rhel-9.7",
@@ -21788,7 +21717,7 @@
         ]
       },
       "7.0.25": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.25/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.25/build_zabbixagent.sh",
         "distros": [
           "sles-15.7",
           "ubuntu-22.04",
@@ -21796,13 +21725,11 @@
         ]
       },
       "7.0.27": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.27/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.27/build_zabbixagent.sh",
         "distros": [
-          "rhel-10",
           "rhel-10.0",
           "rhel-10.1",
           "rhel-8.10",
-          "rhel-9",
           "rhel-9.6",
           "rhel-9.7",
           "sles-15.7",
@@ -21811,14 +21738,12 @@
         ]
       },
       "7.0.3": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.3/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.3/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-8.8",
           "rhel-9.2",
           "rhel-9.4",
-          "sles-12.5",
           "sles-15.5",
           "sles-15.6",
           "ubuntu-20.04",
@@ -21827,14 +21752,12 @@
         ]
       },
       "7.0.5": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.5/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.5/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-8.8",
           "rhel-9.2",
           "rhel-9.4",
-          "sles-12.5",
           "sles-15.5",
           "sles-15.6",
           "ubuntu-20.04",
@@ -21843,9 +21766,8 @@
         ]
       },
       "7.0.9": {
-        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.9/build_zabbixserver.sh",
+        "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.9/build_zabbixagent.sh",
         "distros": [
-          "rhel-8",
           "rhel-8.10",
           "rhel-8.8",
           "rhel-9.2",
