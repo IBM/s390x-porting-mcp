@@ -1,4 +1,5 @@
 """Orchestrator: fetch all sources, generate chunks, output YAML."""
+
 from __future__ import annotations
 
 import argparse
@@ -6,6 +7,7 @@ import json
 import logging
 import os
 import sys
+
 import yaml
 
 sys.path.insert(0, os.path.dirname(__file__))

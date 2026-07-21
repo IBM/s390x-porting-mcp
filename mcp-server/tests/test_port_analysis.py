@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -14,18 +14,18 @@ from utils.port_analysis_utils import (
 
 class TestArchCompatibility:
     def test_go_exclude_s390x(self):
-        code = '//go:build !s390x\n\npackage main'
+        code = "//go:build !s390x\n\npackage main"
         result = check_arch_compatibility(code, language="Go")
         assert len(result["build_constraints"]) >= 1
         assert result["build_constraints"][0]["severity"] == "CRITICAL"
 
     def test_go_amd64_only(self):
-        code = '//go:build amd64\n\npackage main'
+        code = "//go:build amd64\n\npackage main"
         result = check_arch_compatibility(code, language="Go")
         assert len(result["build_constraints"]) >= 1
 
     def test_go_old_build_tag(self):
-        code = '// +build amd64\n\npackage main'
+        code = "// +build amd64\n\npackage main"
         result = check_arch_compatibility(code, language="Go")
         assert len(result["build_constraints"]) >= 1
 
@@ -40,18 +40,15 @@ class TestArchCompatibility:
         assert len(result["problematic_libraries"]) >= 1
 
     def test_non_go_returns_empty(self):
-        code = '#include <stdio.h>\nint main() { return 0; }'
+        code = "#include <stdio.h>\nint main() { return 0; }"
         result = check_arch_compatibility(code, language="C")
         assert result["build_constraints"] == []
         assert result["cgo_usage"] == []
 
     def test_go_with_s390x_included(self):
-        code = '//go:build amd64 || s390x\n\npackage main'
+        code = "//go:build amd64 || s390x\n\npackage main"
         result = check_arch_compatibility(code, language="Go")
-        constraints_excluding = [
-            c for c in result["build_constraints"]
-            if "exclude" in c.get("issue", "").lower()
-        ]
+        constraints_excluding = [c for c in result["build_constraints"] if "exclude" in c.get("issue", "").lower()]
         assert len(constraints_excluding) == 0
 
 
@@ -132,7 +129,7 @@ uint32_t convert(uint32_t val) {
         assert result["overall_assessment"]["portability_score"] < 100
 
     def test_go_code_with_arch_issue(self):
-        code = '//go:build !s390x\n\npackage main\n\nfunc main() {}'
+        code = "//go:build !s390x\n\npackage main\n\nfunc main() {}"
         result = full_port_analysis(code, language="Go")
         assert len(result["arch_analysis"]["build_constraints"]) >= 1
         assert result["overall_assessment"]["portability_score"] < 100

@@ -1,6 +1,6 @@
-import sys
 import os
-from unittest.mock import MagicMock, patch
+import sys
+from unittest.mock import patch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -101,6 +101,7 @@ class TestCheckDockerImageArchitectures:
     @patch("utils.docker_utils._get_auth_token")
     def test_network_error(self, mock_token):
         import requests
+
         mock_token.side_effect = requests.exceptions.ConnectionError("connection failed")
         result = check_docker_image_architectures("bad:image")
         assert result["status"] == "error"

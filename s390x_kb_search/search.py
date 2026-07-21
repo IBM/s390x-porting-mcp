@@ -4,7 +4,6 @@ import logging
 from typing import Any
 
 import numpy as np
-from rank_bm25 import BM25Okapi
 
 from s390x_kb_search.config import (
     BUILD_GUIDE_INTENT_TOKENS,
@@ -223,15 +222,17 @@ def hybrid_search(
     results = []
     for idx, score in deduped[:k]:
         entry = resources.metadata[idx]
-        results.append({
-            "url": entry.get("url", ""),
-            "title": entry.get("title", ""),
-            "heading": entry.get("heading", ""),
-            "snippet": (entry.get("original_text", ""))[:500],
-            "doc_type": entry.get("doc_type", ""),
-            "product": entry.get("product", ""),
-            "version": entry.get("version", ""),
-            "score": round(score, 4),
-        })
+        results.append(
+            {
+                "url": entry.get("url", ""),
+                "title": entry.get("title", ""),
+                "heading": entry.get("heading", ""),
+                "snippet": (entry.get("original_text", ""))[:500],
+                "doc_type": entry.get("doc_type", ""),
+                "product": entry.get("product", ""),
+                "version": entry.get("version", ""),
+                "score": round(score, 4),
+            }
+        )
 
     return results

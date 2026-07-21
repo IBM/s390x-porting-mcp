@@ -1,11 +1,11 @@
 """Generate USearch vector index from chunk metadata."""
+
 from __future__ import annotations
 
 import argparse
 import json
 import logging
 import os
-import sys
 
 import numpy as np
 
@@ -32,10 +32,7 @@ def main():
     logger.info("Loading embedding model: %s", args.model)
     model = SentenceTransformer(args.model)
 
-    texts = [
-        entry.get("search_text", entry.get("original_text", ""))
-        for entry in metadata
-    ]
+    texts = [entry.get("search_text", entry.get("original_text", "")) for entry in metadata]
     logger.info("Encoding %d texts...", len(texts))
     embeddings = model.encode(texts, show_progress_bar=True, batch_size=64)
     embeddings = np.array(embeddings, dtype=np.float32)

@@ -3,7 +3,6 @@ import sys
 from typing import Optional
 
 from fastmcp import FastMCP
-
 from utils.config import KB_PACKAGE_COUNT, LOG_LEVEL, SCRIPT_PACKAGE_COUNT
 from utils.error_handling import format_tool_error
 from utils.invocation_logger import log_invocation_reason
@@ -136,9 +135,7 @@ def port_analysis(
     try:
         from utils.port_analysis_utils import full_port_analysis
 
-        return full_port_analysis(
-            source_code, language=language, file_path=file_path, software_name=software_name
-        )
+        return full_port_analysis(source_code, language=language, file_path=file_path, software_name=software_name)
     except Exception as e:
         return format_tool_error(tool="port_analysis", exc=e, args={"language": language})
 

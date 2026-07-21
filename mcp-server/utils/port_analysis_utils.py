@@ -2,18 +2,14 @@ from __future__ import annotations
 
 import re
 
-from utils.endian_scan_utils import scan_source_code, detect_language, load_fixes, _normalize_language
+from utils.endian_scan_utils import _normalize_language, detect_language, scan_source_code
 
-GO_ARCH_EXCLUDE_PATTERN = re.compile(
-    r'//\s*go:build.*(?:amd64|386|arm64|arm|mips)'
-)
-GO_OLD_BUILD_TAG = re.compile(
-    r'//\s*\+build.*(?:amd64|386|arm64|arm|mips)'
-)
-_S390X_MENTIONED = re.compile(r'\bs390x\b')
-GO_EXCLUDE_S390X = re.compile(r'//\s*(?:go:build|\+build).*!s390x')
+GO_ARCH_EXCLUDE_PATTERN = re.compile(r"//\s*go:build.*(?:amd64|386|arm64|arm|mips)")
+GO_OLD_BUILD_TAG = re.compile(r"//\s*\+build.*(?:amd64|386|arm64|arm|mips)")
+_S390X_MENTIONED = re.compile(r"\bs390x\b")
+GO_EXCLUDE_S390X = re.compile(r"//\s*(?:go:build|\+build).*!s390x")
 CGO_IMPORT = re.compile(r'import\s+"C"')
-CGO_CALL = re.compile(r'\bC\.[A-Za-z_][A-Za-z0-9_]*')
+CGO_CALL = re.compile(r"\bC\.[A-Za-z_][A-Za-z0-9_]*")
 
 PROBLEMATIC_LIBRARIES = [
     ("tpm", "TPM (Trusted Platform Module) - often no s390x support"),
@@ -38,43 +34,53 @@ def check_arch_compatibility(source_code: str, language: str | None = None) -> d
 
     for line_num, line in enumerate(source_code.splitlines(), 1):
         if GO_EXCLUDE_S390X.search(line):
-            results["build_constraints"].append({
-                "line": line_num,
-                "constraint": line.strip(),
-                "issue": "Explicitly excludes s390x",
-                "severity": "CRITICAL",
-            })
+            results["build_constraints"].append(
+                {
+                    "line": line_num,
+                    "constraint": line.strip(),
+                    "issue": "Explicitly excludes s390x",
+                    "severity": "CRITICAL",
+                }
+            )
         elif GO_ARCH_EXCLUDE_PATTERN.search(line) and not _S390X_MENTIONED.search(line):
-            results["build_constraints"].append({
-                "line": line_num,
-                "constraint": line.strip(),
-                "issue": "Architecture-specific constraint may exclude s390x",
-                "severity": "WARNING",
-            })
+            results["build_constraints"].append(
+                {
+                    "line": line_num,
+                    "constraint": line.strip(),
+                    "issue": "Architecture-specific constraint may exclude s390x",
+                    "severity": "WARNING",
+                }
+            )
         elif GO_OLD_BUILD_TAG.search(line) and not _S390X_MENTIONED.search(line):
-            results["build_constraints"].append({
-                "line": line_num,
-                "constraint": line.strip(),
-                "issue": "Old-style build tag may exclude s390x",
-                "severity": "WARNING",
-            })
+            results["build_constraints"].append(
+                {
+                    "line": line_num,
+                    "constraint": line.strip(),
+                    "issue": "Old-style build tag may exclude s390x",
+                    "severity": "WARNING",
+                }
+            )
 
         if CGO_IMPORT.search(line):
-            results["cgo_usage"].append({
-                "line": line_num,
-                "code": line.strip(),
-                "issue": "CGO import - C dependencies must be available on s390x",
-            })
+            results["cgo_usage"].append(
+                {
+                    "line": line_num,
+                    "code": line.strip(),
+                    "issue": "CGO import - C dependencies must be available on s390x",
+                }
+            )
 
         line_lower = line.lower()
         for keyword, description in PROBLEMATIC_LIBRARIES:
             if keyword in line_lower:
-                results["problematic_libraries"].append({
-                    "line": line_num,
-                    "library": keyword,
-                    "description": description,
-                    "code": line.strip(),
-                })
+                results["problematic_libraries"].append(
+                    {
+                        "line": line_num,
+                        "library": keyword,
+                        "description": description,
+                        "code": line.strip(),
+                    }
+                )
 
     return results
 
@@ -137,8 +143,7 @@ def generate_recommendations(endian_results: dict, arch_results: dict) -> list[s
     if arch_results.get("problematic_libraries"):
         libs = [p["library"] for p in arch_results["problematic_libraries"]]
         recommendations.append(
-            f"Potentially problematic libraries detected: {', '.join(libs)}. "
-            "These may not have s390x support."
+            f"Potentially problematic libraries detected: {', '.join(libs)}. These may not have s390x support."
         )
 
     if endian_results.get("warning_count", 0) > 5:
@@ -149,8 +154,7 @@ def generate_recommendations(endian_results: dict, arch_results: dict) -> list[s
 
     if not recommendations:
         recommendations.append(
-            "Code appears largely portable to s390x. Run the test suite on an s390x system "
-            "to verify runtime behavior."
+            "Code appears largely portable to s390x. Run the test suite on an s390x system to verify runtime behavior."
         )
 
     return recommendations
@@ -169,15 +173,16 @@ def full_port_analysis(
     endian_results = scan_source_code(source_code, language=language, file_path=file_path)
     arch_results = check_arch_compatibility(source_code, language=language)
 
-    fixes = load_fixes()
     fix_recommendations = []
     for finding in endian_results.get("findings", []):
         if finding.get("fix_recommendation"):
-            fix_recommendations.append({
-                "for_finding": finding["description"],
-                "at_line": finding["line"],
-                **finding["fix_recommendation"],
-            })
+            fix_recommendations.append(
+                {
+                    "for_finding": finding["description"],
+                    "at_line": finding["line"],
+                    **finding["fix_recommendation"],
+                }
+            )
 
     score = calculate_portability_score(endian_results, arch_results)
     effort = estimate_porting_effort(endian_results, arch_results)
@@ -187,12 +192,12 @@ def full_port_analysis(
     if software_name:
         try:
             from utils.kb_search_utils import search_knowledge_base
+
             existing_build_guides = search_knowledge_base(f"build {software_name} s390x")
         except Exception:
             import logging
-            logging.getLogger(__name__).debug(
-                "KB search failed for '%s'", software_name, exc_info=True
-            )
+
+            logging.getLogger(__name__).debug("KB search failed for '%s'", software_name, exc_info=True)
 
     return {
         "endian_analysis": endian_results,

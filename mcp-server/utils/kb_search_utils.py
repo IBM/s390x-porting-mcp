@@ -24,6 +24,7 @@ def _get_search_resources():
     if not os.path.exists(METADATA_PATH):
         logger.warning("Knowledge base not found at %s. Search will return empty results.", DATA_DIR)
         from s390x_kb_search.resources import SearchResources
+
         _search_resources = SearchResources(metadata=[], embedding_model=None)
         return _search_resources
 

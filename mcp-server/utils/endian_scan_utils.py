@@ -37,6 +37,7 @@ def _normalize_language(language: str | None) -> str | None:
         return None
     return _LANGUAGE_ALIASES.get(language.lower(), language)
 
+
 PATTERN_FILES: dict[str, str] = {
     "common": "endian-patterns.txt",
     "C": "c-cpp-patterns.txt",
@@ -72,7 +73,7 @@ _fix_cache: list[FixRecommendation] = []
 def _parse_languages(lang_str: str) -> set[str]:
     if not lang_str or lang_str.strip() == "ALL":
         return {"ALL"}
-    return {l.strip() for l in lang_str.split(",")}
+    return {lang.strip() for lang in lang_str.split(",")}
 
 
 def _load_pattern_file(filepath: str) -> list[Pattern]:
@@ -100,13 +101,15 @@ def _load_pattern_file(filepath: str) -> list[Pattern]:
             except re.error:
                 continue
 
-            patterns.append(Pattern(
-                severity=severity,
-                regex=compiled,
-                description=description,
-                languages=languages,
-                raw_pattern=raw_pattern,
-            ))
+            patterns.append(
+                Pattern(
+                    severity=severity,
+                    regex=compiled,
+                    description=description,
+                    languages=languages,
+                    raw_pattern=raw_pattern,
+                )
+            )
 
     return patterns
 
@@ -125,10 +128,7 @@ def load_patterns(language: str | None = None) -> list[Pattern]:
             all_patterns.extend(_load_pattern_file(lang_path))
 
     if language:
-        filtered = [
-            p for p in all_patterns
-            if "ALL" in p.languages or language in p.languages
-        ]
+        filtered = [p for p in all_patterns if "ALL" in p.languages or language in p.languages]
     else:
         filtered = all_patterns
 
@@ -156,13 +156,15 @@ def load_fixes() -> list[FixRecommendation]:
             if len(parts) < 5:
                 continue
 
-            fixes.append(FixRecommendation(
-                pattern_id=parts[0].strip(),
-                fix_description=parts[1].strip(),
-                code_before=parts[2].strip().replace("\\n", "\n"),
-                code_after=parts[3].strip().replace("\\n", "\n"),
-                explanation=parts[4].strip(),
-            ))
+            fixes.append(
+                FixRecommendation(
+                    pattern_id=parts[0].strip(),
+                    fix_description=parts[1].strip(),
+                    code_before=parts[2].strip().replace("\\n", "\n"),
+                    code_after=parts[3].strip().replace("\\n", "\n"),
+                    explanation=parts[4].strip(),
+                )
+            )
 
     _fix_cache = fixes
     return fixes
@@ -188,11 +190,11 @@ def detect_language(file_path: str | None = None, source_code: str | None = None
 
     if source_code:
         indicators = {
-            "Go": [r'\bpackage\s+\w+', r'\bfunc\s+\w+', r'\bimport\s+"'],
-            "Python": [r'\bdef\s+\w+', r'\bimport\s+\w+', r'\bclass\s+\w+.*:'],
-            "Java": [r'\bpublic\s+class\b', r'\bimport\s+java\.', r'\bprivate\s+\w+\s+\w+\s*\('],
-            "C++": [r'#include\s+<\w+>', r'\bstd::', r'\bnamespace\s+\w+', r'\btemplate\s*<'],
-            "C": [r'#include\s+<\w+\.h>', r'\bvoid\s+\w+\s*\(', r'\btypedef\s+struct'],
+            "Go": [r"\bpackage\s+\w+", r"\bfunc\s+\w+", r'\bimport\s+"'],
+            "Python": [r"\bdef\s+\w+", r"\bimport\s+\w+", r"\bclass\s+\w+.*:"],
+            "Java": [r"\bpublic\s+class\b", r"\bimport\s+java\.", r"\bprivate\s+\w+\s+\w+\s*\("],
+            "C++": [r"#include\s+<\w+>", r"\bstd::", r"\bnamespace\s+\w+", r"\btemplate\s*<"],
+            "C": [r"#include\s+<\w+\.h>", r"\bvoid\s+\w+\s*\(", r"\btypedef\s+struct"],
         }
         scores: dict[str, int] = {}
         for lang, pats in indicators.items():
