@@ -17,6 +17,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    environment: Quay_io_ibm_org_credentials
 
     steps:
       - name: Checkout repository
