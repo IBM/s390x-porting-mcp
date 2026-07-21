@@ -1,4 +1,5 @@
 """Search quality evaluation framework."""
+
 from __future__ import annotations
 
 import json
@@ -49,13 +50,15 @@ def evaluate_search(
             mrr_sum += 1.0 / first_hit_rank
 
         evaluated += 1
-        results_detail.append({
-            "id": q["id"],
-            "question": question,
-            "expected_urls": expected_urls,
-            "result_urls": result_urls[:5],
-            "first_hit_rank": first_hit_rank,
-        })
+        results_detail.append(
+            {
+                "id": q["id"],
+                "question": question,
+                "expected_urls": expected_urls,
+                "result_urls": result_urls[:5],
+                "first_hit_rank": first_hit_rank,
+            }
+        )
 
     if evaluated == 0:
         return {"error": "No questions with expected URLs to evaluate"}

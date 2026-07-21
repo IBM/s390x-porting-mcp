@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -99,7 +99,7 @@ class TestScanSourceCode:
         assert result["warning_count"] == 0
 
     def test_go_little_endian_critical(self):
-        code = 'binary.LittleEndian.PutUint32(buf, value)'
+        code = "binary.LittleEndian.PutUint32(buf, value)"
         result = scan_source_code(code, language="Go")
         assert result["critical_count"] >= 1
 

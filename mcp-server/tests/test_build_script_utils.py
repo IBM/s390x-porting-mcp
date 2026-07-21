@@ -1,14 +1,14 @@
-import sys
 import os
+import sys
 from unittest.mock import patch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from utils.build_script_utils import (
-    _normalize_name,
+    _distro_matches,
     _find_package,
     _find_version,
-    _distro_matches,
+    _normalize_name,
     find_and_return_script,
 )
 

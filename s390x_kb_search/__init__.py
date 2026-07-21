@@ -25,6 +25,7 @@ def load_search_resources(
     embedding_model = None
     try:
         from sentence_transformers import SentenceTransformer
+
         embedding_model = SentenceTransformer(model_name)
         logger.info("Loaded embedding model: %s", model_name)
     except ImportError:
@@ -33,10 +34,7 @@ def load_search_resources(
     bm25_index = None
     bm25_corpus_tokens: list[list[str]] = []
     if metadata:
-        bm25_corpus_tokens = [
-            tokenize(entry.get("search_text", entry.get("original_text", "")))
-            for entry in metadata
-        ]
+        bm25_corpus_tokens = [tokenize(entry.get("search_text", entry.get("original_text", ""))) for entry in metadata]
         bm25_index = BM25Okapi(bm25_corpus_tokens)
         logger.info("Built BM25 index over %d documents", len(metadata))
 

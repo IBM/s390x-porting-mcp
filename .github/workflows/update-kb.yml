@@ -1,0 +1,108 @@
+name: Update Knowledge Base
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-kb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone upstream sources
+        run: |
+          mkdir -p upstream
+          git clone --depth 1 https://github.com/linux-on-ibm-z/docs.wiki.git upstream/wiki
+          git clone --depth 1 https://github.com/linux-on-ibm-z/scripts.git upstream/scripts
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            mcp-server/requirements.txt
+            embedding-generation/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          pip install -r mcp-server/requirements.txt
+          pip install -r embedding-generation/requirements.txt
+          pip install pytest
+
+      - name: Generate chunks
+        run: |
+          python3 embedding-generation/generate_chunks.py \
+            --wiki-dir upstream/wiki \
+            --scripts-dir upstream/scripts \
+            --output-dir embedding-generation/output \
+            --script-index-output mcp-server/data/script_index.json
+
+      - name: Generate vector index
+        run: |
+          python3 embedding-generation/local_vectorstore_creation.py \
+            --metadata embedding-generation/output/metadata.json \
+            --output-dir mcp-server/data
+
+      - name: Evaluate search quality
+        run: |
+          bash embedding-generation/run_eval.sh | tee eval_output.txt
+
+          HIT1=$(sed -n 's/.*Hit@1: \([0-9.]*\).*/\1/p' eval_output.txt)
+          HIT3=$(sed -n 's/.*Hit@3: \([0-9.]*\).*/\1/p' eval_output.txt)
+          MRR=$(sed -n 's/.*MRR: *\([0-9.]*\).*/\1/p' eval_output.txt)
+
+          python3 -c "
+          import sys
+          h1, h3, mrr = float('${HIT1}'), float('${HIT3}'), float('${MRR}')
+          failed = []
+          if h1 < 0.60: failed.append(f'Hit@1 {h1:.4f} < 0.60')
+          if h3 < 0.80: failed.append(f'Hit@3 {h3:.4f} < 0.80')
+          if mrr < 0.70: failed.append(f'MRR {mrr:.4f} < 0.70')
+          if failed:
+              print('Quality gate FAILED: ' + ', '.join(failed))
+              sys.exit(1)
+          print('Quality gate passed.')
+          "
+
+      - name: Run tests
+        run: python3 -m pytest mcp-server/tests/ -v
+
+      - name: Get upstream SHAs
+        id: shas
+        run: |
+          echo "wiki_sha=$(git -C upstream/wiki rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "scripts_sha=$(git -C upstream/scripts rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: |
+            mcp-server/data/metadata.json
+            mcp-server/data/usearch_index.bin
+            mcp-server/data/script_index.json
+          commit-message: |
+            Update knowledge base from upstream sources
+
+            wiki: ${{ steps.shas.outputs.wiki_sha }}
+            scripts: ${{ steps.shas.outputs.scripts_sha }}
+          signoff: true
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          branch: update/kb-${{ github.run_id }}
+          title: "Update knowledge base from upstream sources"
+          body: |
+            Automated knowledge base update.
+
+            - wiki: `${{ steps.shas.outputs.wiki_sha }}`
+            - scripts: `${{ steps.shas.outputs.scripts_sha }}`
+          delete-branch: true

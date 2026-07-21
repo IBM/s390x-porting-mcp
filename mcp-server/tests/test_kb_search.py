@@ -1,9 +1,10 @@
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
+from s390x_kb_search.resources import SearchResources
 from s390x_kb_search.search import (
     _detect_distro,
     _detect_intent,
@@ -13,7 +14,6 @@ from s390x_kb_search.search import (
     salient_tokens,
     tokenize,
 )
-from s390x_kb_search.resources import SearchResources
 
 
 class TestTokenize:

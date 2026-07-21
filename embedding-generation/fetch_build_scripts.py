@@ -1,4 +1,5 @@
 """Fetch build scripts from linux-on-ibm-z/scripts repository."""
+
 from __future__ import annotations
 
 import logging
@@ -48,13 +49,15 @@ def discover_scripts(scripts_dir: str) -> list[dict[str, str]]:
                 if filename.startswith("build_") and filename.endswith(".sh"):
                     filepath = os.path.join(version_dir, filename)
                     url = f"{SCRIPTS_BASE_URL}/{pkg_name}/{version}/{filename}"
-                    scripts.append({
-                        "package": pkg_name,
-                        "version": version,
-                        "filename": filename,
-                        "filepath": filepath,
-                        "url": url,
-                    })
+                    scripts.append(
+                        {
+                            "package": pkg_name,
+                            "version": version,
+                            "filename": filename,
+                            "filepath": filepath,
+                            "url": url,
+                        }
+                    )
 
     logger.info("Discovered %d build scripts in %s", len(scripts), scripts_dir)
     return scripts
@@ -62,14 +65,14 @@ def discover_scripts(scripts_dir: str) -> list[dict[str, str]]:
 
 def _extract_distros(content: str) -> list[str]:
     distros = set()
-    for match in re.finditer(r'(?:ubuntu|rhel|sles|suse)[\s-]*[\d.]+', content, re.IGNORECASE):
+    for match in re.finditer(r"(?:ubuntu|rhel|sles|suse)[\s-]*[\d.]+", content, re.IGNORECASE):
         distros.add(match.group(0).strip())
     return sorted(distros)
 
 
 def _extract_functions(content: str) -> dict[str, str]:
     functions = {}
-    func_pattern = re.compile(r'^function\s+(\w+)\s*\(\)\s*\{|^(\w+)\s*\(\)\s*\{', re.MULTILINE)
+    func_pattern = re.compile(r"^function\s+(\w+)\s*\(\)\s*\{|^(\w+)\s*\(\)\s*\{", re.MULTILINE)
     matches = list(func_pattern.finditer(content))
 
     for i, match in enumerate(matches):
@@ -98,41 +101,47 @@ def chunk_build_script(script_info: dict[str, str]) -> list[dict[str, Any]]:
 
     if not functions:
         search_text = f"{package} {version} s390x build script {content[:1000]}"
-        chunks.append({
-            "uuid": str(uuid.uuid5(uuid.NAMESPACE_URL, f"script:{url}")),
-            "chunk_uuid": f"script_{re.sub(r'[^a-z0-9]', '_', package.lower())}_{version.replace('.', '_')}",
-            "url": url,
-            "original_text": content[:3000],
-            "title": f"{package} {version} Build Script",
-            "heading": "Build Script",
-            "heading_path": [package, version, "Build Script"],
-            "doc_type": "Build Script",
-            "product": package,
-            "version": version,
-            "category": "",
-            "distros": distros,
-            "keywords": f"{package} build script s390x {' '.join(distros)}",
-            "search_text": search_text,
-        })
-    else:
-        for func_name, func_body in functions.items():
-            search_text = f"{package} {version} s390x {func_name} {func_body[:800]}"
-            chunks.append({
-                "uuid": str(uuid.uuid5(uuid.NAMESPACE_URL, f"script:{url}:{func_name}")),
-                "chunk_uuid": f"script_{re.sub(r'[^a-z0-9]', '_', package.lower())}_{version.replace('.', '_')}_{func_name}",
+        chunks.append(
+            {
+                "uuid": str(uuid.uuid5(uuid.NAMESPACE_URL, f"script:{url}")),
+                "chunk_uuid": f"script_{re.sub(r'[^a-z0-9]', '_', package.lower())}_{version.replace('.', '_')}",
                 "url": url,
-                "original_text": func_body[:2000],
+                "original_text": content[:3000],
                 "title": f"{package} {version} Build Script",
-                "heading": func_name,
-                "heading_path": [package, version, func_name],
+                "heading": "Build Script",
+                "heading_path": [package, version, "Build Script"],
                 "doc_type": "Build Script",
                 "product": package,
                 "version": version,
                 "category": "",
                 "distros": distros,
-                "keywords": f"{package} build script {func_name} s390x",
+                "keywords": f"{package} build script s390x {' '.join(distros)}",
                 "search_text": search_text,
-            })
+            }
+        )
+    else:
+        for func_name, func_body in functions.items():
+            search_text = f"{package} {version} s390x {func_name} {func_body[:800]}"
+            chunks.append(
+                {
+                    "uuid": str(uuid.uuid5(uuid.NAMESPACE_URL, f"script:{url}:{func_name}")),
+                    "chunk_uuid": (
+                        f"script_{re.sub(r'[^a-z0-9]', '_', package.lower())}_{version.replace('.', '_')}_{func_name}"
+                    ),
+                    "url": url,
+                    "original_text": func_body[:2000],
+                    "title": f"{package} {version} Build Script",
+                    "heading": func_name,
+                    "heading_path": [package, version, func_name],
+                    "doc_type": "Build Script",
+                    "product": package,
+                    "version": version,
+                    "category": "",
+                    "distros": distros,
+                    "keywords": f"{package} build script {func_name} s390x",
+                    "search_text": search_text,
+                }
+            )
 
     return chunks
 
