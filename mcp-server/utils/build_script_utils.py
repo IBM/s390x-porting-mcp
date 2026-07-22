@@ -120,7 +120,8 @@ def find_and_return_script(
         }
 
     ver, ver_data = version_match
-    script_url = ver_data.get("script_url", "")
+    scripts = ver_data.get("scripts", [])
+    script_url = scripts[0]["script_url"] if scripts else ver_data.get("script_url", "")
     wiki_url = pkg_data.get("wiki_url", "")
 
     return {
@@ -128,7 +129,7 @@ def find_and_return_script(
         "package": pkg_name,
         "version": ver,
         "script_url": script_url,
+        "scripts": scripts,
         "wiki_url": wiki_url,
         "distros": ver_data.get("distros", []),
-        "script_content": ver_data.get("script_content", ""),
     }

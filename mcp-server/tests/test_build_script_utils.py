@@ -17,14 +17,22 @@ SAMPLE_INDEX = {
         "wiki_url": "https://example.com/kafka",
         "versions": {
             "3.7.0": {
-                "script_url": "https://example.com/kafka-3.7.0.sh",
+                "scripts": [
+                    {
+                        "script_url": "https://example.com/kafka-3.7.0.sh",
+                        "filename": "build_kafka.sh",
+                    },
+                ],
                 "distros": ["Ubuntu 22.04", "RHEL 8"],
-                "script_content": "#!/bin/bash\necho kafka",
             },
             "3.6.0": {
-                "script_url": "https://example.com/kafka-3.6.0.sh",
+                "scripts": [
+                    {
+                        "script_url": "https://example.com/kafka-3.6.0.sh",
+                        "filename": "build_kafka.sh",
+                    },
+                ],
                 "distros": ["SLES 15"],
-                "script_content": "#!/bin/bash\necho kafka old",
             },
         },
     },
@@ -32,9 +40,31 @@ SAMPLE_INDEX = {
         "wiki_url": "https://example.com/go",
         "versions": {
             "1.22": {
-                "script_url": "https://example.com/go-1.22.sh",
+                "scripts": [
+                    {
+                        "script_url": "https://example.com/go-1.22.sh",
+                        "filename": "build_go.sh",
+                    },
+                ],
                 "distros": ["Ubuntu 24.04"],
-                "script_content": "#!/bin/bash\necho go",
+            },
+        },
+    },
+    "Zabbix": {
+        "wiki_url": "",
+        "versions": {
+            "7.0.25": {
+                "scripts": [
+                    {
+                        "script_url": "https://example.com/build_zabbixagent.sh",
+                        "filename": "build_zabbixagent.sh",
+                    },
+                    {
+                        "script_url": "https://example.com/build_zabbixserver.sh",
+                        "filename": "build_zabbixserver.sh",
+                    },
+                ],
+                "distros": ["Ubuntu 22.04", "RHEL 9"],
             },
         },
     },
@@ -132,7 +162,19 @@ class TestFindAndReturnScript:
         assert result["status"] == "found"
         assert result["package"] == "Apache-Kafka"
         assert result["version"] == "3.7.0"
-        assert "script_content" in result
+        assert result["script_url"] == "https://example.com/kafka-3.7.0.sh"
+        assert len(result["scripts"]) == 1
+
+    @patch("utils.build_script_utils._load_script_index", return_value=SAMPLE_INDEX)
+    def test_multiple_scripts_per_version(self, _):
+        result = find_and_return_script("zabbix", "7.0.25")
+        assert result["status"] == "found"
+        assert result["package"] == "Zabbix"
+        assert len(result["scripts"]) == 2
+        filenames = [s["filename"] for s in result["scripts"]]
+        assert "build_zabbixagent.sh" in filenames
+        assert "build_zabbixserver.sh" in filenames
+        assert result["script_url"] == result["scripts"][0]["script_url"]
 
     @patch("utils.build_script_utils._load_script_index", return_value=SAMPLE_INDEX)
     def test_version_not_found(self, _):
