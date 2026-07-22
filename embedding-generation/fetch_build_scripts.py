@@ -157,13 +157,21 @@ def build_script_index(scripts_dir: str) -> dict[str, Any]:
         if pkg not in index:
             index[pkg] = {"wiki_url": "", "versions": {}}
 
+        if ver not in index[pkg]["versions"]:
+            index[pkg]["versions"][ver] = {"scripts": [], "distros": []}
+
         with open(script["filepath"]) as f:
             content = f.read()
 
-        index[pkg]["versions"][ver] = {
-            "script_url": script["url"],
-            "distros": _extract_distros(content),
-        }
+        index[pkg]["versions"][ver]["scripts"].append(
+            {
+                "script_url": script["url"],
+                "filename": script["filename"],
+            }
+        )
+        for d in _extract_distros(content):
+            if d not in index[pkg]["versions"][ver]["distros"]:
+                index[pkg]["versions"][ver]["distros"].append(d)
 
     return index
 

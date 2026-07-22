@@ -38,9 +38,11 @@ def knowledge_base_search(
 
 @mcp.tool(
     description=(
-        "Retrieve an existing build script for software already ported to s390x Linux. "
+        "Retrieve existing build scripts for software already ported to s390x Linux. "
         f"Searches the linux-on-ibm-z/scripts repository index, covering {SCRIPT_PACKAGE_COUNT}+ software "
         "packages with version-specific build scripts for RHEL, SLES, and Ubuntu. "
+        "Returns all available scripts for the matched version (some packages have "
+        "multiple scripts, e.g. agent and server). "
         "For packages not yet ported, suggests porting analysis and how to request help."
     )
 )
