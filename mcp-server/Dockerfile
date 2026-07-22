@@ -29,7 +29,6 @@ RUN mkdir -p "$HF_HOME" "$SENTENCE_TRANSFORMERS_HOME" && \
     python3 -c "from sentence_transformers import SentenceTransformer; \
     SentenceTransformer('${EMBEDDING_MODEL}', cache_folder='${SENTENCE_TRANSFORMERS_HOME}')"
 
-RUN mkdir -p ./data
 COPY --from=embeddings /embedding-data/metadata.json ./data/metadata.json
 COPY --from=embeddings /embedding-data/usearch_index.bin ./data/usearch_index.bin
 COPY mcp-server/data/script_index.json ./data/script_index.json
@@ -54,7 +53,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     HF_HUB_OFFLINE=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 ca-certificates skopeo git && \
+    python3 ca-certificates skopeo && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /app /app
