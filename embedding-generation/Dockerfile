@@ -4,8 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 python3-venv python3-pip python3-dev \
-    build-essential \
+    python3 python3-venv python3-pip \
     git ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 

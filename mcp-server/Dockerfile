@@ -14,8 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     SENTENCE_TRANSFORMERS_HOME=/app/.cache/sentence_transformers
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 python3-venv python3-pip python3-dev \
-    build-essential \
+    python3 python3-venv python3-pip \
     curl git wget ca-certificates skopeo && \
     rm -rf /var/lib/apt/lists/*
 
