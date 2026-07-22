@@ -20,6 +20,12 @@ jobs:
     environment: Quay_io_ibm_org_credentials
 
     steps:
+      - name: Free up disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache
+          sudo docker image prune --all --force
+          df -h /
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -44,8 +50,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ env.REGISTRY }}:embeddings-latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
 
       - name: Build and push MCP server image
         uses: docker/build-push-action@v6
