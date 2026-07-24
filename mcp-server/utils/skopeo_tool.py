@@ -8,26 +8,26 @@ from utils.cli_utils import run_command
 
 ALLOWED_TRANSPORTS = frozenset({"docker"})
 
-BLOCKED_HOSTNAMES = frozenset({
-    "metadata.google.internal",
-    "metadata.internal",
-})
+BLOCKED_HOSTNAMES = frozenset(
+    {
+        "metadata.google.internal",
+        "metadata.internal",
+    }
+)
 
 BLOCKED_IP_NETWORKS = [
     ipaddress.IPv4Network("169.254.0.0/16"),
     ipaddress.IPv6Network("fe80::/10"),
 ]
 
-BLOCKED_IPS = frozenset({
-    ipaddress.IPv4Address("0.0.0.0"),
-})
-
-
-_IMAGE_REF_PATTERN = re.compile(
-    r"^[a-zA-Z0-9]"
-    r"[a-zA-Z0-9._/:@\[\]\-]*"
-    r"$"
+BLOCKED_IPS = frozenset(
+    {
+        ipaddress.IPv4Address("0.0.0.0"),
+    }
 )
+
+
+_IMAGE_REF_PATTERN = re.compile(r"^[a-zA-Z0-9]" r"[a-zA-Z0-9._/:@\[\]\-]*" r"$")
 
 
 def _validate_image_format(image: str) -> str | None:
@@ -87,7 +87,9 @@ def _validate_image_host(image: str) -> str | None:
             return f"Registry host blocked: {host} resolves to a restricted address."
         for network in BLOCKED_IP_NETWORKS:
             if addr in network:
-                return f"Registry host blocked: {host} resolves to a restricted IP range."
+                return (
+                    f"Registry host blocked: {host} resolves to a restricted IP range."
+                )
 
     return None
 

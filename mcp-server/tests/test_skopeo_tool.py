@@ -52,7 +52,9 @@ class TestSkopeoInspect:
     def test_raw_inspect(self, mock_cmd):
         mock_cmd.return_value = {"status": "success", "stdout": "{}"}
         skopeo_inspect("nginx:latest", raw=True)
-        mock_cmd.assert_called_once_with(["skopeo", "inspect", "--raw", "docker://nginx:latest"])
+        mock_cmd.assert_called_once_with(
+            ["skopeo", "inspect", "--raw", "docker://nginx:latest"]
+        )
 
     def test_custom_transport_blocked(self):
         result = skopeo_inspect("dir/image", transport="dir")
