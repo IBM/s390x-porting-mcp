@@ -53,11 +53,39 @@ class TestSkopeoInspect:
         skopeo_inspect("nginx:latest", raw=True)
         mock_cmd.assert_called_once_with(["skopeo", "inspect", "--raw", "docker://nginx:latest"])
 
+    def test_custom_transport_blocked(self):
+        result = skopeo_inspect("dir/image", transport="dir")
+        assert result["status"] == "error"
+        assert "Unsupported transport" in result["error"]
+
+
+class TestTransportValidation:
     @patch("utils.skopeo_tool.run_command")
-    def test_custom_transport(self, mock_cmd):
+    def test_docker_transport_allowed(self, mock_cmd):
         mock_cmd.return_value = {"status": "success", "stdout": "{}"}
-        skopeo_inspect("dir/image", transport="dir")
-        mock_cmd.assert_called_once_with(["skopeo", "inspect", "dir://dir/image"])
+        result = skopeo_inspect("nginx:latest", transport="docker")
+        mock_cmd.assert_called_once_with(["skopeo", "inspect", "docker://nginx:latest"])
+        assert result["status"] == "success"
+
+    def test_dir_transport_blocked(self):
+        result = skopeo_inspect("/etc/passwd", transport="dir")
+        assert result["status"] == "error"
+        assert "Unsupported transport" in result["error"]
+
+    def test_docker_daemon_transport_blocked(self):
+        result = skopeo_inspect("nginx:latest", transport="docker-daemon")
+        assert result["status"] == "error"
+        assert "Unsupported transport" in result["error"]
+
+    def test_oci_transport_blocked(self):
+        result = skopeo_inspect("/tmp/oci-image", transport="oci")
+        assert result["status"] == "error"
+        assert "Unsupported transport" in result["error"]
+
+    def test_containers_storage_transport_blocked(self):
+        result = skopeo_inspect("nginx:latest", transport="containers-storage")
+        assert result["status"] == "error"
+        assert "Unsupported transport" in result["error"]
 
 
 class TestSkopeoHelp:
