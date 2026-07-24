@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ipaddress
+import re
 import socket
 
 from utils.cli_utils import run_command
@@ -20,6 +21,21 @@ BLOCKED_IP_NETWORKS = [
 BLOCKED_IPS = frozenset({
     ipaddress.IPv4Address("0.0.0.0"),
 })
+
+
+_IMAGE_REF_PATTERN = re.compile(
+    r"^[a-zA-Z0-9]"
+    r"[a-zA-Z0-9._/:@\[\]\-]*"
+    r"$"
+)
+
+
+def _validate_image_format(image: str) -> str | None:
+    if not image:
+        return "Invalid image reference: image must not be empty."
+    if not _IMAGE_REF_PATTERN.match(image):
+        return f"Invalid image reference: {image!r} contains disallowed characters."
+    return None
 
 
 def _extract_registry_host(image: str) -> str | None:
@@ -82,6 +98,9 @@ def skopeo_inspect(image: str, transport: str = "docker", raw: bool = False) -> 
             "status": "error",
             "error": f"Unsupported transport: {transport}. Only 'docker' is supported.",
         }
+    format_error = _validate_image_format(image)
+    if format_error:
+        return {"status": "error", "error": format_error}
     host_error = _validate_image_host(image)
     if host_error:
         return {"status": "error", "error": host_error}

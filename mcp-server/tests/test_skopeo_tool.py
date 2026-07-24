@@ -160,3 +160,59 @@ class TestHostValidation:
     def test_ipv6_link_local_blocked(self):
         result = skopeo_inspect("[fe80::1]/probe:latest")
         assert result["status"] == "error"
+
+
+class TestImageFormatValidation:
+    def test_empty_image_rejected(self):
+        result = skopeo_inspect("")
+        assert result["status"] == "error"
+        assert "Invalid image" in result["error"]
+
+    def test_image_with_spaces_rejected(self):
+        result = skopeo_inspect("alpine latest")
+        assert result["status"] == "error"
+        assert "Invalid image" in result["error"]
+
+    def test_image_with_control_chars_rejected(self):
+        result = skopeo_inspect("alpine\x00:latest")
+        assert result["status"] == "error"
+        assert "Invalid image" in result["error"]
+
+    def test_image_with_semicolon_rejected(self):
+        result = skopeo_inspect("alpine;echo pwned")
+        assert result["status"] == "error"
+        assert "Invalid image" in result["error"]
+
+    @patch("utils.skopeo_tool.run_command")
+    def test_valid_image_simple(self, mock_cmd):
+        mock_cmd.return_value = {"status": "success", "stdout": "{}"}
+        result = skopeo_inspect("alpine:latest")
+        mock_cmd.assert_called_once()
+        assert result["status"] == "success"
+
+    @patch("utils.skopeo_tool.run_command")
+    @patch("utils.skopeo_tool.socket.getaddrinfo")
+    def test_valid_image_with_registry(self, mock_dns, mock_cmd):
+        mock_dns.return_value = [
+            (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("54.198.86.24", 443)),
+        ]
+        mock_cmd.return_value = {"status": "success", "stdout": "{}"}
+        result = skopeo_inspect("quay.io/ibm/s390x-mcp:latest")
+        mock_cmd.assert_called_once()
+        assert result["status"] == "success"
+
+    @patch("utils.skopeo_tool.run_command")
+    def test_valid_image_with_digest(self, mock_cmd):
+        mock_cmd.return_value = {"status": "success", "stdout": "{}"}
+        result = skopeo_inspect(
+            "alpine@sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+        )
+        mock_cmd.assert_called_once()
+        assert result["status"] == "success"
+
+    @patch("utils.skopeo_tool.run_command")
+    def test_valid_image_with_port(self, mock_cmd):
+        mock_cmd.return_value = {"status": "success", "stdout": "{}"}
+        result = skopeo_inspect("localhost:5000/myimage:v1")
+        mock_cmd.assert_called_once()
+        assert result["status"] == "success"
