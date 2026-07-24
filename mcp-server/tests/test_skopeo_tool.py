@@ -52,9 +52,7 @@ class TestSkopeoInspect:
     def test_raw_inspect(self, mock_cmd):
         mock_cmd.return_value = {"status": "success", "stdout": "{}"}
         skopeo_inspect("nginx:latest", raw=True)
-        mock_cmd.assert_called_once_with(
-            ["skopeo", "inspect", "--raw", "docker://nginx:latest"]
-        )
+        mock_cmd.assert_called_once_with(["skopeo", "inspect", "--raw", "docker://nginx:latest"])
 
     def test_custom_transport_blocked(self):
         result = skopeo_inspect("dir/image", transport="dir")
@@ -206,9 +204,7 @@ class TestImageFormatValidation:
     @patch("utils.skopeo_tool.run_command")
     def test_valid_image_with_digest(self, mock_cmd):
         mock_cmd.return_value = {"status": "success", "stdout": "{}"}
-        result = skopeo_inspect(
-            "alpine@sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-        )
+        result = skopeo_inspect("alpine@sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890")
         mock_cmd.assert_called_once()
         assert result["status"] == "success"
 

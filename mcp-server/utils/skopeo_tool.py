@@ -87,9 +87,7 @@ def _validate_image_host(image: str) -> str | None:
             return f"Registry host blocked: {host} resolves to a restricted address."
         for network in BLOCKED_IP_NETWORKS:
             if addr in network:
-                return (
-                    f"Registry host blocked: {host} resolves to a restricted IP range."
-                )
+                return f"Registry host blocked: {host} resolves to a restricted IP range."
 
     return None
 
