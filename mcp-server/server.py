@@ -155,6 +155,11 @@ def skopeo(
     invocation_reason: Optional[str] = None,
 ) -> dict:
     log_invocation_reason(tool="skopeo", reason=invocation_reason, args={"image": image})
+    if transport != "docker":
+        return {
+            "status": "error",
+            "error": f"Unsupported transport: {transport}. Only 'docker' is supported.",
+        }
     try:
         from utils.skopeo_tool import skopeo_inspect
 
