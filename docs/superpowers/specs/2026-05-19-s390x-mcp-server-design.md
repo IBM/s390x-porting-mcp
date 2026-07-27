@@ -12,7 +12,7 @@ Two sources are merged into a unified knowledge base:
 
 2. **linux-on-ibm-z/scripts**: 74 directories with version-specific shell build scripts. Pattern: `{package}/{version}/build_{package}.sh`
 
-Pattern databases from **bob-portgenesis** (github.ibm.com/rishi/bob-portgenesis) are vendored for the endian scanning tools: 6 language-specific pattern files + 56-entry fix recommendations database.
+Pattern databases from **bob-portgenesis** are vendored for the endian scanning tools: 6 language-specific pattern files + 56-entry fix recommendations database.
 
 ## Architecture Overview
 

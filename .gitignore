@@ -32,3 +32,7 @@ embedding-generation/*.yaml
 .pytest_cache/
 htmlcov/
 .coverage
+
+.claude/
+docs/superpowers/plans/
+bob-marketplace-registry/
