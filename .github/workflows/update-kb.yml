@@ -1,6 +1,8 @@
 name: Update Knowledge Base
 
 on:
+  schedule:
+    - cron: "0 6 1,15 * *" # 1st & 15th of each month, 06:00 UTC
   workflow_dispatch:
 
 permissions:
@@ -86,6 +88,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
+          reviewers: vibhutisawant
           add-paths: |
             mcp-server/data/metadata.json
             mcp-server/data/usearch_index.bin
