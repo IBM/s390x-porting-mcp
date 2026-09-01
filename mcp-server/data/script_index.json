@@ -2936,6 +2936,23 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "9.5.2": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Beats/9.5.2/build_beats.sh",
+            "filename": "build_beats.sh"
+          }
+        ],
+        "distros": [
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -4901,6 +4918,27 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Consul/2.0.2/build_consul.sh",
+            "filename": "build_consul.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "2.0.3": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Consul/2.0.3/build_consul.sh",
             "filename": "build_consul.sh"
           }
         ],
@@ -8414,6 +8452,7 @@
           "rhel-10.2",
           "rhel-8",
           "rhel-8.10",
+          "rhel-9.",
           "rhel-9.6",
           "rhel-9.8",
           "sles-15.7",
@@ -11459,6 +11498,29 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "3.4.3": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/HAProxy/3.4.3/build_haproxy.sh",
+            "filename": "build_haproxy.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -12027,6 +12089,26 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Htop/3.5.2/build_htop.sh",
+            "filename": "build_htop.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "3.5.3": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Htop/3.5.3/build_htop.sh",
             "filename": "build_htop.sh"
           }
         ],
@@ -13769,7 +13851,7 @@
           "rhel-9.7",
           "rhel-9.8",
           "sles-15.7",
-          "sles-16",
+          "sles-16.0",
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
@@ -15059,6 +15141,27 @@
           "rhel-9.7",
           "rhel-9.8",
           "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "9.5.2": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Logstash/9.5.2/build_logstash.sh",
+            "filename": "build_logstash.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
@@ -17601,6 +17704,30 @@
           "ubuntu-25.10"
         ]
       },
+      "1.30.4": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/NGINX/1.30.4/build_nginx.sh",
+            "filename": "build_nginx.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "suse.",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
       "1.31.3": {
         "scripts": [
           {
@@ -19796,6 +19923,28 @@
           "ubuntu-22.04",
           "ubuntu-24.04",
           "ubuntu-25.10"
+        ]
+      },
+      "8.5.10": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/PHP/8.5.10/build_php.sh",
+            "filename": "build_php.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
         ]
       },
       "8.5.2": {
@@ -24667,6 +24816,28 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "4.3.5": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/RabbitMQ/4.3.5/build_rabbitmq.sh",
+            "filename": "build_rabbitmq.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -27637,6 +27808,29 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Spire/1.15.2/build_spire.sh",
+            "filename": "build_spire.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "1.15.3": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Spire/1.15.3/build_spire.sh",
             "filename": "build_spire.sh"
           }
         ],
@@ -30737,6 +30931,28 @@
           "ubuntu-25.10"
         ]
       },
+      "2.15.0": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/librdkafka/2.15.0/build_librdkafka.sh",
+            "filename": "build_librdkafka.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "rhel8.10",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
       "2.3.0": {
         "scripts": [
           {
@@ -31768,6 +31984,27 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/osquery/5.23.0/build_osquery.sh",
+            "filename": "build_osquery.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "rhel.",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu."
+        ]
+      },
+      "5.23.1": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/osquery/5.23.1/build_osquery.sh",
             "filename": "build_osquery.sh"
           }
         ],
