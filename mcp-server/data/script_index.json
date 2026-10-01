@@ -120,6 +120,21 @@
           "ubuntu-24.04"
         ]
       },
+      "26.2.0": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Alfresco/26.2.0/build_alfresco.sh",
+            "filename": "build_alfresco.sh"
+          }
+        ],
+        "distros": [
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "sles-15.7",
+          "ubuntu-24.04"
+        ]
+      },
       "6.2": {
         "scripts": [
           {
@@ -270,8 +285,15 @@
           }
         ],
         "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
           "rhel-8.10",
-          "sles-15.6",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
@@ -518,6 +540,32 @@
           "rhel-8.10",
           "rhel-9.6",
           "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "4.1.12": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheCassandra/4.1.12/build_cassandra.sh",
+            "filename": "build_cassandra.sh"
+          }
+        ],
+        "distros": [
+          "RHEL 10.",
+          "SLES 16.0.",
+          "Ubuntu-24.04",
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
           "sles-15.7",
           "sles-16.0",
           "ubuntu-22.04",
@@ -791,6 +839,26 @@
           "rhel-8.10",
           "rhel-9.6",
           "rhel-9.7",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "5.0.9": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheCassandra/5.0.9/build_cassandra.sh",
+            "filename": "build_cassandra.sh"
+          }
+        ],
+        "distros": [
+          "rhel-8",
+          "rhel-8.",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
           "sles-15.7",
           "sles-16.0",
           "ubuntu-22.04",
@@ -1288,15 +1356,17 @@
         "distros": [
           "rhel-10.0",
           "rhel-10.1",
+          "rhel-10.2",
           "rhel-8.10",
           "rhel-9.6",
           "rhel-9.7",
+          "rhel-9.8",
           "sles 15.7",
+          "sles 16.0",
           "sles-15.7",
           "sles-16.0",
           "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
+          "ubuntu-24.04"
         ]
       }
     }
@@ -2943,6 +3013,26 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "9.5.4": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Beats/9.5.4/build_beats.sh",
+            "filename": "build_beats.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -3569,6 +3659,26 @@
           "ubuntu-24.04"
         ]
       },
+      "3.32.2": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Calico/3.32.2/build_Calico.sh",
+            "filename": "build_Calico.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
       "3.5.0": {
         "scripts": [
           {
@@ -3634,6 +3744,30 @@
           "sles-15.1",
           "ubuntu-16.04",
           "ubuntu-18.04"
+        ]
+      }
+    }
+  },
+  "Cilium": {
+    "wiki_url": "",
+    "versions": {
+      "1.19.4": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Cilium/1.19.4/build_cilium.sh",
+            "filename": "build_cilium.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "ubuntu."
         ]
       }
     }
@@ -4945,6 +5079,27 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "2.0.4": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Consul/2.0.4/build_consul.sh",
+            "filename": "build_consul.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -5158,6 +5313,23 @@
         "distros": [
           "rhel-7.8",
           "rhel-7.9"
+        ]
+      },
+      "3.5.2": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/CouchDB/3.5.2/build_couchdb.sh",
+            "filename": "build_couchdb.sh"
+          }
+        ],
+        "distros": [
+          "rhel-8.10",
+          "rhel-9.",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
         ]
       }
     }
@@ -7922,6 +8094,52 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "29.1": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Erlang/29.1/build_erlang.sh",
+            "filename": "build_erlang.sh"
+          }
+        ],
+        "distros": [
+          "rhel 10.",
+          "rhel 8.10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "29.1.1": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Erlang/29.1.1/build_erlang.sh",
+            "filename": "build_erlang.sh"
+          }
+        ],
+        "distros": [
+          "rhel 10.",
+          "rhel 8.10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -8477,6 +8695,28 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Falco/0.44.1/build_falco.sh",
+            "filename": "build_falco.sh"
+          }
+        ],
+        "distros": [
+          "RHEL 10",
+          "SLES 15",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8",
+          "rhel-8.10",
+          "rhel-9.",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "0.45.0": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Falco/0.45.0/build_falco.sh",
             "filename": "build_falco.sh"
           }
         ],
@@ -9250,6 +9490,27 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Fluentd/1.19.3/build_fluentd.sh",
+            "filename": "build_fluentd.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "1.19.4": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Fluentd/1.19.4/build_fluentd.sh",
             "filename": "build_fluentd.sh"
           }
         ],
@@ -12738,6 +12999,27 @@
           "ubuntu-24.04"
         ]
       },
+      "3.11.4": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/InfluxDB/3.11.4/build_influxdb.sh",
+            "filename": "build_influxdb.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
       "3.3.0": {
         "scripts": [
           {
@@ -13265,6 +13547,27 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Keystone/29.0.2/build_keystone.sh",
+            "filename": "build_keystone.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "29.1.0": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Keystone/29.1.0/build_keystone.sh",
             "filename": "build_keystone.sh"
           }
         ],
@@ -15251,6 +15554,27 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Logstash/9.5.3/build_logstash.sh",
+            "filename": "build_logstash.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "9.5.4": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Logstash/9.5.4/build_logstash.sh",
             "filename": "build_logstash.sh"
           }
         ],
@@ -17491,6 +17815,29 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "9.7.2": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/MySQL/9.7.2/build_mysql.sh",
+            "filename": "build_mysql.sh"
+          }
+        ],
+        "distros": [
+          "RHEL 10.",
+          "rhel-10",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -17829,6 +18176,30 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/NGINX/1.30.4/build_nginx.sh",
+            "filename": "build_nginx.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "suse.",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "1.30.5": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/NGINX/1.30.5/build_nginx.sh",
             "filename": "build_nginx.sh"
           }
         ],
@@ -24982,6 +25353,28 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "4.3.6": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/RabbitMQ/4.3.6/build_rabbitmq.sh",
+            "filename": "build_rabbitmq.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -25953,6 +26346,27 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Ruby/4.0.6/build_ruby.sh",
+            "filename": "build_ruby.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "4.0.7": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Ruby/4.0.7/build_ruby.sh",
             "filename": "build_ruby.sh"
           }
         ],
@@ -30157,6 +30571,33 @@
           "rhel-9"
         ]
       },
+      "7.0.31": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.31/build_zabbixagent.sh",
+            "filename": "build_zabbixagent.sh"
+          },
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Zabbix/7.0.31/build_zabbixserver.sh",
+            "filename": "build_zabbixserver.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04",
+          "rhel-10",
+          "rhel-9"
+        ]
+      },
       "7.0.5": {
         "scripts": [
           {
@@ -30644,6 +31085,27 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "0.60.6": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/cAdvisor/0.60.6/build_cadvisor.sh",
+            "filename": "build_cadvisor.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -31105,6 +31567,28 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/librdkafka/2.15.0/build_librdkafka.sh",
+            "filename": "build_librdkafka.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.1",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.7",
+          "rhel-9.8",
+          "rhel8.10",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "2.15.1": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/librdkafka/2.15.1/build_librdkafka.sh",
             "filename": "build_librdkafka.sh"
           }
         ],
