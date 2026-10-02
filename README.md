@@ -7,7 +7,7 @@ MCP server for building and porting open-source software on s390x Linux (IBM Z /
 | Tool | Description |
 |------|-------------|
 | `knowledge_base_search` | Hybrid semantic+keyword search over build guides and scripts |
-| `build_script_generate` | Retrieve build scripts for specific software/version/distro combinations |
+| `build_script_retrieval` | Retrieve build scripts for specific software/version/distro combinations |
 | `check_s390x_image` | Check if a Docker image supports the s390x architecture |
 | `endian_scan` | Scan source code for endian-specific issues (C/C++, Go, Java, Python) |
 | `port_analysis` | Comprehensive porting assessment with portability score and fix recommendations |
