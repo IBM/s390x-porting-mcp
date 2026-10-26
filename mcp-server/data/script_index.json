@@ -1368,6 +1368,27 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "2.4.69": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/ApacheHttpServer/2.4.69/build_apachehttpserver.sh",
+            "filename": "build_apachehttpserver.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles 15.7",
+          "sles 16.0",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -1696,10 +1717,8 @@
         ],
         "distros": [
           "rhel-10.0",
-          "rhel-10.1",
           "rhel-8.10",
           "rhel-9.6",
-          "rhel-9.7",
           "sles-15.7",
           "sles-16.0",
           "ubuntu-22.04",
@@ -15591,6 +15610,25 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "9.5.5": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Logstash/9.5.5/build_logstash.sh",
+            "filename": "build_logstash.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -16418,6 +16456,25 @@
           "ubuntu-16.04",
           "ubuntu-18.04",
           "ubuntu-20.04"
+        ]
+      },
+      "3.2.10": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/MariaDB-Connector-ODBC/3.2.10/build_mariadb_connector_odbc.sh",
+            "filename": "build_mariadb_connector_odbc.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles15",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
         ]
       },
       "3.2.2": {
@@ -26534,6 +26591,27 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "3008.2": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/SaltStack/3008.2/build_salt.sh",
+            "filename": "build_salt.sh"
+          }
+        ],
+        "distros": [
+          "RHEL 10",
+          "RHEL 8",
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -32651,6 +32729,27 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "2.0.84": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/netty-tcnative/2.0.84/build_netty.sh",
+            "filename": "build_netty.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10",
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -32838,6 +32937,25 @@
           "rhel-8.10",
           "rhel-9.6",
           "rhel-9.7",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "0.8.7": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/pgvector/0.8.7/build_pgvector.sh",
+            "filename": "build_pgvector.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
           "rhel-9.8",
           "sles-15.7",
           "sles-16.0",
