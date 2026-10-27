@@ -1,0 +1,8 @@
+[mcp_servers.s390x]
+command = "docker"
+args = [
+  "run", "--rm", "-i",
+  "-v", "/absolute/path/to/your/project:/workspace",
+  "quay.io/ibm/s390x-porting-mcp:latest"
+]
+startup_timeout_sec = 120
