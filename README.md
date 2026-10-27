@@ -36,6 +36,23 @@ Copy `agent-integrations/claude-code/.mcp.json` to your project root, or add to 
 }
 ```
 
+### Codex
+
+Copy `agent-integrations/codex/config.toml` to your project's `.codex/` folder, or merge the table into `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.s390x]
+command = "docker"
+args = ["run", "--rm", "-i", "-v", "/absolute/path/to/your/project:/workspace", "quay.io/ibm/s390x-porting-mcp:latest"]
+startup_timeout_sec = 120
+```
+
+Codex does not expand `${workspaceFolder}`, so give the bind mount an absolute host path. The longer startup timeout covers the first run, when the image is still being pulled. You can also register the server from the CLI:
+
+```bash
+codex mcp add s390x -- docker run --rm -i -v "$PWD:/workspace" quay.io/ibm/s390x-porting-mcp:latest
+```
+
 ### IBM Bob
 
 Copy `agent-integrations/ibm-bob/mcp.json` to your project's `.bob/` folder, or add to your IBM Bob MCP settings:

@@ -197,6 +197,7 @@ After tuning, always re-run `embedding-generation/run_eval.sh` to confirm metric
 If you change the Docker image name/tag or add new tools, update the MCP configs:
 
 - `agent-integrations/claude-code/.mcp.json`
+- `agent-integrations/codex/config.toml`
 - `agent-integrations/cursor/mcp.json`
 - `agent-integrations/ibm-bob/mcp.json`
 - `agent-integrations/vs-code/mcp.json`
