@@ -25,7 +25,7 @@ jobs:
           git clone --depth 1 https://github.com/linux-on-ibm-z/scripts.git upstream/scripts
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
