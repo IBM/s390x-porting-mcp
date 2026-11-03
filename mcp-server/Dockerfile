@@ -4,7 +4,7 @@ ARG EMBEDDINGS_IMAGE=s390x-mcp:embeddings-latest
 FROM ${EMBEDDINGS_IMAGE} AS embeddings
 
 # Stage 1: Builder
-FROM ubuntu:24.04 AS builder
+FROM ubuntu:26.04 AS builder
 
 ARG EMBEDDING_MODEL=all-MiniLM-L6-v2
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -39,7 +39,7 @@ COPY s390x_kb_search/ ./s390x_kb_search/
 COPY mcp-server/server.py .
 
 # Stage 2: Runtime
-FROM ubuntu:24.04 AS runtime
+FROM ubuntu:26.04 AS runtime
 LABEL io.modelcontextprotocol.server.name="s390x-mcp"
 LABEL io.modelcontextprotocol.server.version="0.1.0"
 
