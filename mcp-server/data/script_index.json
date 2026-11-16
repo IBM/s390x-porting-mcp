@@ -5463,6 +5463,25 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "3.5.3": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/CouchDB/3.5.3/build_couchdb.sh",
+            "filename": "build_couchdb.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.",
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.",
+          "rhel-9.6",
+          "rhel-9.8",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -8121,10 +8140,12 @@
           "rhel 8.10",
           "rhel-10.0",
           "rhel-10.1",
+          "rhel-10.2",
           "rhel-8.10",
           "rhel-9.4",
           "rhel-9.6",
           "rhel-9.7",
+          "rhel-9.8",
           "sles-15.7",
           "sles-16.0",
           "ubuntu-22.04",
@@ -8935,6 +8956,30 @@
         "scripts": [
           {
             "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Falco/0.45.1/build_falco.sh",
+            "filename": "build_falco.sh"
+          }
+        ],
+        "distros": [
+          "RHEL 10",
+          "SLES 15",
+          "SLES 16",
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8",
+          "rhel-8.10",
+          "rhel-9.",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
+      },
+      "0.45.2": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Falco/0.45.2/build_falco.sh",
             "filename": "build_falco.sh"
           }
         ],
@@ -15905,6 +15950,25 @@
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
+      },
+      "9.5.6": {
+        "scripts": [
+          {
+            "script_url": "https://github.com/linux-on-ibm-z/scripts/blob/master/Logstash/9.5.6/build_logstash.sh",
+            "filename": "build_logstash.sh"
+          }
+        ],
+        "distros": [
+          "rhel-10.0",
+          "rhel-10.2",
+          "rhel-8.10",
+          "rhel-9.6",
+          "rhel-9.8",
+          "sles-15.7",
+          "sles-16.0",
+          "ubuntu-22.04",
+          "ubuntu-24.04"
+        ]
       }
     }
   },
@@ -18949,16 +19013,12 @@
         ],
         "distros": [
           "rhel-10.0",
-          "rhel-10.1",
           "rhel-8.10",
-          "rhel-9.4",
           "rhel-9.6",
-          "rhel-9.7",
           "sles-15.7",
           "sles-16.0",
           "ubuntu-22.04",
-          "ubuntu-24.04",
-          "ubuntu-25.10"
+          "ubuntu-24.04"
         ]
       }
     }
@@ -33062,13 +33122,9 @@
           }
         ],
         "distros": [
-          "rhel-10.0",
-          "rhel-10.2",
           "rhel-8.10",
           "rhel-9.6",
           "rhel-9.8",
-          "sles-15.7",
-          "sles-16.0",
           "ubuntu-22.04",
           "ubuntu-24.04"
         ]
